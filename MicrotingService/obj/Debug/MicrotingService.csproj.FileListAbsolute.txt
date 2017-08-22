@@ -81,7 +81,6 @@ C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\De
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormSqlController.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormCommunicator.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormSubscriber.dll
-C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormOffice.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormData.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\EntityFramework.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\Newtonsoft.Json.dll
@@ -104,7 +103,6 @@ C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\De
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormSqlController.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormCommunicator.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormSubscriber.pdb
-C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormOffice.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\eFormData.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\AWSSDK.SQS.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\MicrotingService\bin\Debug\AWSSDK.SQS.xml

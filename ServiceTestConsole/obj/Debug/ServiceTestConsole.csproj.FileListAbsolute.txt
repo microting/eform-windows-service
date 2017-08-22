@@ -7,7 +7,6 @@ C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormSqlController.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormCommunicator.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormSubscriber.dll
-C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormOffice.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormData.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\EntityFramework.dll
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\Newtonsoft.Json.dll
@@ -32,7 +31,6 @@ C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormSqlController.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormCommunicator.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormSubscriber.pdb
-C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormOffice.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\eFormData.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\AWSSDK.SQS.pdb
 C:\Users\Troels Andersen\Dropbox\3 Code\MicrotingService\ServiceTestConsole\bin\Debug\AWSSDK.SQS.xml
