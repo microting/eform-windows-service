@@ -322,16 +322,3 @@ paket-files/
 .idea/
 *.sln.iml
 >>>>>>> e83bb4f... Initial commit
-
-Compiled/input/sql_connection.txt
-Compiled/input/first_run.txt
-Compiled/log/*.*
-Compiled/custom/*.*
-*.jpeg
-SourceCode/DLL/*
-Compiled/log.txt
-Compiled/*.exe
-Compiled/*.xml
-Compiled/*.dll
-Compiled/*.config
-Compiled/*.manifest
