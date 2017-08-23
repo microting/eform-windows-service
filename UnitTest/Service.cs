@@ -4,7 +4,7 @@ using Xunit;
 
 namespace MicrotingService.Tests
 {
-    public class UnitTest1
+    public class Service
     {
         [Fact]
         public void TestMethod1()
