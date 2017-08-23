@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace MicrotingService.Tests
+namespace UnitTest
 {
     public class Service
     {
