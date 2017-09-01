@@ -82,13 +82,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OutlookCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.0\lib\OutlookCore.dll</HintPath>
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.0.2\lib\OutlookCore.dll</HintPath>
     </Reference>
     <Reference Include="OutlookOffice, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.0\lib\OutlookOffice.dll</HintPath>
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.0.2\lib\OutlookOffice.dll</HintPath>
     </Reference>
     <Reference Include="OutlookSql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.0\lib\OutlookSql.dll</HintPath>
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.0.2\lib\OutlookSql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
