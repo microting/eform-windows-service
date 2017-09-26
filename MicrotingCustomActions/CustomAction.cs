@@ -103,17 +103,15 @@ namespace MicrotingCustomActions
         {
             try
             {
-
-
-                var cd = session.Database.OpenView("DELETE FROM InstallExecuteSequence WHERE Action='RegisterProduct'");
-                cd.Execute();
-                cd.Close();
-
                 var vendorName = "Microting";
                 var soft = Registry.Users.OpenSubKey(".default\\SOFTWARE");
-                if (soft != null && !soft.GetSubKeyNames().Contains(vendorName))
-                    soft.CreateSubKey(vendorName);
-                var vendor = soft.OpenSubKey(vendorName); 
+                var vendor = soft.OpenSubKey(vendorName);
+                if (vendor == null)
+                {
+                    session["NOSERVICES"] = "1";
+                    return ActionResult.Success;
+                }
+
                 var services = vendor?.GetValue("Services")?.ToString();
                 if (string.IsNullOrEmpty(services))
                 {

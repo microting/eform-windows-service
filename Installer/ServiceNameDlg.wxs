@@ -13,10 +13,10 @@
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="&amp;Next">
           <Publish Property="INSTALLFOLDER" Value="[ProgramFilesFolder]\[ProductName]\[SERVICENAME]\">1</Publish>
           <Publish Property="SOMETEST" Value="[ProgramFilesFolder]\[ProductName]\[SERVICENAME]\">1</Publish>
-          <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT SERVICENAME</Publish>
+          <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT SERVICENAME</Publish> 
         </Control> 
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
-          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish> 
         </Control>
         <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" 
                  Text="WixUI_Bmp_Banner" />
@@ -25,8 +25,8 @@
         </Control>
         <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
         <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
-          <Text>{\WixUI_Font_Title}Customer Information</Text>
-        </Control>
+          <Text>{\WixUI_Font_Title}Customer Information</Text> 
+        </Control>  
         <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
       </Dialog>
     </UI> 
