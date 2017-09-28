@@ -6,7 +6,7 @@
   <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.0.0" Manufacturer="Microting A/S" >
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" />
 
-    <UIRef Id="WixUI_InstallDirModified"/>
+    <UIRef Id="WixUI_InstallDirModified"/> 
 
     <MediaTemplate EmbedCab="yes"/>
 
@@ -16,7 +16,7 @@
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
   </Product>  
-
+ 
   <Fragment>   
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
@@ -52,13 +52,13 @@
   </Fragment>  
   
   <Fragment>    
-    <CustomAction Id="Install" BinaryKey="BinaryCA" DllEntry="InstalCA" Execute="deferred" Impersonate="no"/>   
+    <CustomAction Id="Install" BinaryKey="BinaryCA" DllEntry="InstalCA" Execute="deferred" Impersonate="no"/>    
     <CustomAction Id="GetServicesList" BinaryKey="BinaryCA" DllEntry="GetServicesListCA" Execute="immediate" />
     <CustomAction Id="RemoveService" BinaryKey="BinaryCA" DllEntry="UninstallServiceCA" Execute="deferred" Impersonate="no" />
     <CustomAction Id="StopBeforeUpadateService" BinaryKey="BinaryCA" DllEntry="StopBeforUpdateServiceCA" Execute="deferred" Impersonate="no" />
     <CustomAction Id="UpdateService" BinaryKey="BinaryCA" DllEntry="UpdateServiceCA" Execute="deferred" Impersonate="no" />
-    <Binary Id="BinaryCA" SourceFile="BuildedCustomActions\MicrotingCustomActions.dll"/> 
-    
+    <Binary Id="BinaryCA" SourceFile="BuildedCustomActions\MicrotingCustomActions.CA.dll"/>  
+     
     <!--Runs before installation started--> 
     <CustomAction Id="SetInstalValues" Property="Install" Value="INSTMODE=[INSTMODE];INSTALLFOLDER=[INSTALLFOLDER];CONNECTIONSTRING=[CONNECTIONSTRING];OUTLOOKCONNECTIONSTRINGENABLED=[OUTLOOKCONNECTIONSTRINGENABLED];OUTLOOKCONNECTIONSTRING=[OUTLOOKCONNECTIONSTRING];SERVICENAME=[SERVICENAME]" />
     <CustomAction Id="SetRemoveValues" Property="RemoveService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
