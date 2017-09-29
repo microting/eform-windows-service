@@ -9,8 +9,8 @@
     <OutputName>MicrotingServiceInstaller</OutputName>
     <OutputType>Package</OutputType>
 	<WixToolPath>$(SolutionDir)wix\3.11\</WixToolPath>
-    <WixTargetsPath>$(WixToolPath)Wix.targets</WixTargetsPath>
-    <WixTasksPath>$(WixToolPath)wixtasks.dll</WixTasksPath>
+    <WixTargetsPath>$(WixToolPath)wix.targets</WixTargetsPath>
+    <WixTasksPath>$(WixToolPath)WixTasks.dll</WixTasksPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
