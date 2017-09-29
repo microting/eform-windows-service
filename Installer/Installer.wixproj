@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>MicrotingServiceInstaller</OutputName>
     <OutputType>Package</OutputType>
-	<WixToolPath>$(SolutionDir)wix\3.11\</WixToolPath>
+    <WixToolPath>$(SolutionDir)wix\3.11\</WixToolPath>
     <WixTargetsPath>$(WixToolPath)wix.targets</WixTargetsPath>
     <WixTasksPath>$(WixToolPath)WixTasks.dll</WixTasksPath>
   </PropertyGroup>
@@ -61,7 +61,7 @@
     <PreBuildEvent />
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>$(ProjectDir)BuildedCustomActions\AllowMultipleVersions.exe $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>"$(ProjectDir)BuildedCustomActions\AllowMultipleVersions.exe" "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
