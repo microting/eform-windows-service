@@ -3,5 +3,5 @@ solution: "./MicrotingService.sln"
 install:
 - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./MicrotingService.sln
 script:
-- msbuild ./MicrotingService.sln
+- msbuild ./MicrotingService.sln /v:diag
 - mono ./packages/xunit.runner.console.2.2.0/tools/xunit.console.exe ./UnitTest/bin/Debug/UnitTest.dll
