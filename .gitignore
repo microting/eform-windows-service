@@ -321,3 +321,4 @@ paket-files/
 *.sln.iml
 ServiceTestConsole/obj/
 ServiceTestConsole/bin/
+Installer/BuildedCustomActions/*
