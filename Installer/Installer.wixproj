@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Demo" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -22,7 +22,6 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AllFiles Include="$(MSBuildToolsPath)\**"/>
     <Compile Include="ConnectionStringsDlg.wxs" />
     <Compile Include="EmptyFIieldDlg.wxs" />
     <Compile Include="ProgressModifiedDlg.wxs" />
@@ -34,11 +33,6 @@
     <Compile Include="WixUI_InstallDirModified.wxs" />
   </ItemGroup>
   
-  <Target Name="Demo">
-
-    <Message Text="AllFiles: @(AllFiles)"/>
-  </Target>
-
   <ItemGroup>
     <Content Include="Installer.wax" />
     <Content Include="MicrotingEULA.rtf" />
