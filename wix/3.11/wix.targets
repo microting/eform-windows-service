@@ -17,7 +17,7 @@
          instead set as default and override -->
     <WixVersionTargetsPath>wix200x.targets</WixVersionTargetsPath>
     <!-- MSBuild 2.0 - 3.5 -->
-    <!-- <WixVersionTargetsPath Condition=" '$(MSBuildToolsVersion)' == '' OR '$(MSBuildToolsVersion)' &lt; '4.0' ">wix200x.targets</WixVersionTargetsPath> -->
+    <WixVersionTargetsPath Condition=" '$(MSBuildToolsVersion)' == '' OR '$(MSBuildToolsVersion)' &lt; '4.0' ">wix200x.targets</WixVersionTargetsPath>
   </PropertyGroup>
 
   <Import Project="$(WixVersionTargetsPath)" />
