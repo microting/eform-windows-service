@@ -2,7 +2,6 @@ language: csharp
 solution: "./MicrotingService.sln"
 install:
 - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./MicrotingService.sln
-- sudo gacutil -i /usr/lib/mono/msbuild/15.0/bin/Microsoft.Build.Tasks.v4.0.dll
 script:
-- msbuild ./MicrotingService.sln
+- xbuild ./MicrotingService.sln
 - mono ./packages/xunit.runner.console.2.2.0/tools/xunit.console.exe ./UnitTest/bin/Debug/UnitTest.dll
