@@ -4,19 +4,18 @@
     <UI> 
       <Dialog Id="ConnectionStringsDlg" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes">
         <Control Id="ConnectionStringLabel" Type="Text" X="45" Y="73" Width="100" Height="15" TabSkip="no" Text="&amp;Connection String:" />
-        <Control Id="ConnectionStringEdit" Type="Edit" X="45" Y="85" Width="220" Height="18" Property="CONNECTIONSTRING" Text="{500}"/>
+        <Control Id="ConnectionStringEdit" Type="Edit" X="45" Y="85" Width="220" Height="18" Property="CONNECTIONSTRING" Text="{500}" />
  
         <Control Id="OutlookConnectionStringCheckBox" Type="CheckBox" X="45" Y="110" Width="220" Height="15" CheckBoxValue="1" Property="OUTLOOKCONNECTIONSTRINGENABLED" Text ="&amp;Outlook Connection String:"/>
         <Control Id="OutlookConnectionStringEdit" Type="Edit" X="45" Y="125" Width="220" Height="18" Property="OUTLOOKCONNECTIONSTRING" Text="{500}" >
           <Condition Action="enable" >OUTLOOKCONNECTIONSTRINGENABLED = 1</Condition>
           <Condition Action="disable"><![CDATA[OUTLOOKCONNECTIONSTRINGENABLED <>1]]></Condition>
-        </Control>
+        </Control> 
           
         <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
         </Control>
 
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="&amp;Next">
-          <Publish Property="SOME" Value="[CONNECTIONSTRING]">1</Publish>
           <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT CONNECTIONSTRING</Publish>
         </Control>
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">

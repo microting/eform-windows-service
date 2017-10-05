@@ -31,10 +31,10 @@ namespace MicrotingCustomActions
 
                 // save connection strings
                 File.WriteAllText(inputFolder + "\\sql_connection_sdkCore.txt",
-                    session.CustomActionData["CONNECTIONSTRING"]);
+                    session.CustomActionData["CONNECTIONSTRING"].Replace("@@", ";"));
                 if (session.CustomActionData["OUTLOOKCONNECTIONSTRINGENABLED"] == "1")
                     File.WriteAllText(inputFolder + "\\sql_connection_outlook.txt",
-                        session.CustomActionData["OUTLOOKCONNECTIONSTRING"]);
+                        session.CustomActionData["OUTLOOKCONNECTIONSTRING"].Replace("@@", ";"));
 
                 // save products list into registry
                 var serviceName = session.CustomActionData["SERVICENAME"];
@@ -167,7 +167,7 @@ namespace MicrotingCustomActions
                 if (service.Status != ServiceControllerStatus.Stopped)
                     service.Stop();
 
-                service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
+                service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(30));
 
 
                 // uninstall service
@@ -254,7 +254,7 @@ namespace MicrotingCustomActions
                 if (service.Status != ServiceControllerStatus.Stopped)
                     service.Stop();
 
-                service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(5));
+                service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(30));
 
                 var regkey = Registry.LocalMachine.OpenSubKey($@"SYSTEM\CurrentControlSet\services\{serviceName}");
 
@@ -269,6 +269,29 @@ namespace MicrotingCustomActions
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " " + ex.StackTrace);
+                return ActionResult.Failure;
+            }
+        }
+
+        [CustomAction]
+        public static ActionResult FormatConnectionStringsCA(Session session)
+        {
+            try
+            {
+                session.Log("Outlook connection");
+                session["CONNECTIONSTRING"] = session["CONNECTIONSTRING"].Replace(";", "@@");
+                session.Log("Outlook connectionfdfsfdsfds");
+                session.Log("Outlook connection string enabled:" + session["OUTLOOKCONNECTIONSTRINGENABLED"]);
+                if (session["OUTLOOKCONNECTIONSTRINGENABLED"] == "1")
+                    session["OUTLOOKCONNECTIONSTRING"].Replace(";", "@@"); 
+
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+                session.Log(ex.Message);
+                session.Log(ex.StackTrace);
                 return ActionResult.Failure;
             }
         }

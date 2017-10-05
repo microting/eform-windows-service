@@ -54,6 +54,7 @@
   <Fragment>    
     <CustomAction Id="Install" BinaryKey="BinaryCA" DllEntry="InstalCA" Execute="deferred" Impersonate="no"/>    
     <CustomAction Id="GetServicesList" BinaryKey="BinaryCA" DllEntry="GetServicesListCA" Execute="immediate" />
+    <CustomAction Id="FormatConnectionStrings" BinaryKey="BinaryCA" DllEntry="FormatConnectionStringsCA" Execute="immediate" />
     <CustomAction Id="RemoveService" BinaryKey="BinaryCA" DllEntry="UninstallServiceCA" Execute="deferred" Impersonate="no" />
     <CustomAction Id="StopBeforeUpadateService" BinaryKey="BinaryCA" DllEntry="StopBeforUpdateServiceCA" Execute="deferred" Impersonate="no" />
     <CustomAction Id="UpdateService" BinaryKey="BinaryCA" DllEntry="UpdateServiceCA" Execute="deferred" Impersonate="no" />
