@@ -7,6 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A9B8A71A-21CD-4499-A058-839B2754E6EF}</ProjectGuid>
     <OutputType>Library</OutputType>
+	<WixToolPath>..\wix\3.11\</WixToolPath>
+	<WixTasksPath>WixTasks.dll</WixTasksPath>
     <!-- <WixToolPath>..\wix\3.11\</WixToolPath> -->
     <!-- <WixTargetsPath>$(WixToolPath)wix.targets</WixTargetsPath> -->
     <!-- <WixTasksPath>WixTasks.dll</WixTasksPath> -->
@@ -16,7 +18,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <!--<WixCATargetsPath Condition=" '$(WixCATargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.CA.targets</WixCATargetsPath>-->
-    <WixCATargetsPath Condition=" '$(WixCATargetsPath)' == '' ">..\wix\3.11\sdk\wix.ca.targets</WixCATargetsPath>
+    <!--<WixCATargetsPath Condition=" '$(WixCATargetsPath)' == '' ">..\wix\3.11\sdk\wix.ca.targets</WixCATargetsPath>-->
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -55,5 +57,7 @@
     <Content Include="CustomAction.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(WixCATargetsPath)" />
+  <!--<Import Project="$(WixCATargetsPath)" />-->
+  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+  <!--<Import Project="$(WixToolPath)\wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(WixToolPath)wix.targets') " />-->
 </Project>
