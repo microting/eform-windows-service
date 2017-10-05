@@ -23,13 +23,14 @@ SOFTWARE.
 */
 
 using eFormShared;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security;
 
 namespace MicrotingService
 {
@@ -40,11 +41,33 @@ namespace MicrotingService
         OutlookCore.Core outLook;
         Tools t = new Tools();
         string serviceLocation;
+        private FileSystemWatcher _fileWatcher;
+        private List<string> fileNames;
+        private string inboundPath;
+        string sSource;
+        string sLog;
+        string sEvent;
+
+        // DEPRECATED REMOVED IN A NEW VERSION
+        bool fileHandlingEnabled = false;
+        // DEPRECATED REMOVED IN A NEW VERSION
         #endregion
 
         //con
         public ServiceLogic()
         {
+
+            sSource = "MicrotingService";
+            sLog = "Application";
+            bool sourceExists;
+            try
+            {
+                EventLog.CreateEventSource(sSource, "Application");
+            }
+            catch (SecurityException)
+            {
+                sSource = "Application";
+            }
             try
             {
                 LogEvent("Service called");
@@ -80,6 +103,7 @@ namespace MicrotingService
                     try
                     {
                         sdkCore.HandleEventException -= CoreEventException;
+                        sdkCore.HandleCaseCompleted += _caseCompleted;
                         LogEvent("Core exception events disconnected (if needed)");
                     }
                     catch { }
@@ -104,6 +128,24 @@ namespace MicrotingService
                         outLook.Start(outlookSqlStr);
                         LogEvent("Outlook started");
                     }
+                    #endregion
+
+                    #region start FileWatcher 
+                    // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+                    if (File.Exists(GetServiceLocation() + "input\\inboundPath.txt"))
+                    {
+                        inboundPath = File.ReadAllText(GetServiceLocation() + "input\\inboundPath.txt").Trim();
+                        _fileWatcher = new FileSystemWatcher(inboundPath);
+
+                        _fileWatcher.Created += _fileWatcher_Created;
+
+                        _fileWatcher.EnableRaisingEvents = true;
+
+                        fileNames = new List<string>();
+                        fileHandlingEnabled = true;
+                        LogEvent("Filewatecher started");
+                    }
+                    // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
                     #endregion
                 }
                 LogEvent("Service Start completed");
@@ -147,11 +189,74 @@ namespace MicrotingService
             if (serviceLocation != "")
                 return serviceLocation;
 
-            serviceLocation = "c:\\microtingservice\\" + GetServiceName() + "\\";
+            serviceLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            serviceLocation = Path.GetDirectoryName(serviceLocation) + "\\";
             LogEvent("serviceLocation:'" + serviceLocation + "'");
 
             return serviceLocation;
         }
+
+        #region _fileWather_Created
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        private void _fileWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            if (!fileNames.Contains(e.Name))
+            {
+                LogEvent("_fileWatcher_Created called for file :" + e.Name);
+                fileNames.Add(e.Name);
+                char[] delimiter = { '_' };
+                int siteId = int.Parse(e.Name.Split(delimiter)[0]);
+                string navId = e.Name.Split(delimiter)[1].Replace(".xml", "");
+                string rawXml = "";
+                foreach ( string line in File.ReadLines(e.FullPath)) {
+                    rawXml += line;
+                }
+                eFormData.MainElement mainElement = sdkCore.TemplateFromXml(rawXml);
+                int template_id = sdkCore.TemplateCreate(mainElement);
+
+                // We read the MainElement from db, since we need our own ids.
+                mainElement = sdkCore.TemplateRead(template_id);
+
+                List<int> siteIds = new List<int>();
+                siteIds.Add(siteId);
+                List<string> mtUid = sdkCore.CaseCreate(mainElement, "", siteIds, navId);
+                string newEnding = "_" + mtUid.First().ToString() + ".xml";
+                string newFileName = e.FullPath.Replace("inbound", "parsed").Replace(".xml", newEnding);
+                File.Move(e.FullPath, newFileName);
+                LogEvent(String.Format("File created: Path {0}, Name: {1}", e.FullPath, e.Name));
+            }
+        }
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        #endregion
+
+        #region _caseCreated
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        private void _caseCompleted(object sender, EventArgs args)
+        {
+            if (fileHandlingEnabled)
+            {
+
+                LogEvent(String.Format("_caseCompleted called"));
+                LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
+                Case_Dto trigger = (Case_Dto)sender;
+                int siteId = trigger.SiteUId;
+                string caseType = trigger.CaseType;
+                string caseUid = trigger.CaseUId;
+                string mUId = trigger.MicrotingUId;
+                string checkUId = trigger.CheckUId;
+
+                string nav_id = trigger.Custom;
+
+                string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
+                string newPath = inboundPath.Replace("inbound", "outbound") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
+                LogEvent(String.Format("_caseCompleted called oldPath is : " + oldPath));
+
+                File.Move(oldPath, newPath);
+                LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
+            }
+        }
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        #endregion
 
         protected String    GetServiceName()
         {
@@ -163,7 +268,7 @@ namespace MicrotingService
             // the process contains a single service, if there are more than one services hosted
             // in the process you will have to do something else
 
-            int processId = System.Diagnostics.Process.GetCurrentProcess().Id;
+            int processId = Process.GetCurrentProcess().Id;
             String query = "SELECT * FROM Win32_Service where ProcessId = " + processId;
             System.Management.ManagementObjectSearcher searcher =
                 new System.Management.ManagementObjectSearcher(query);
@@ -182,27 +287,25 @@ namespace MicrotingService
             Exception ex = (Exception)sender;
         }
 
-        private void        LogEvent(string appendText)
+        private void LogEvent(string appendText)
         {
             try
             {
-                File.AppendAllText(serviceLocation + "log\\log_" + DateTime.Now.ToString("MM.dd") + ".txt", DateTime.Now.ToString() + " // " + appendText + Environment.NewLine);
+                EventLog.WriteEntry(sSource, appendText, EventLogEntryType.Information);
             }
             catch
-            {
-                //damn
-            }
+            { }
         }
 
         private void        LogException(string appendText)
         {
             try
             {
-                File.AppendAllText(serviceLocation + "log\\FatalException_" + DateTime.Now.ToString("MM.dd_HH.mm.ss") + ".txt", DateTime.Now.ToString() + " // "+ appendText + Environment.NewLine);
+                EventLog.WriteEntry(sSource, appendText, EventLogEntryType.Error);
             }
             catch
             {
-                //damn
+
             }
         }
         #endregion
