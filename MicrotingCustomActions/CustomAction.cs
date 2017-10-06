@@ -278,10 +278,7 @@ namespace MicrotingCustomActions
         {
             try
             {
-                session.Log("Outlook connection");
                 session["CONNECTIONSTRING"] = session["CONNECTIONSTRING"].Replace(";", "@@");
-                session.Log("Outlook connectionfdfsfdsfds");
-                session.Log("Outlook connection string enabled:" + session["OUTLOOKCONNECTIONSTRINGENABLED"]);
                 if (session["OUTLOOKCONNECTIONSTRINGENABLED"] == "1")
                     session["OUTLOOKCONNECTIONSTRING"].Replace(";", "@@"); 
 
