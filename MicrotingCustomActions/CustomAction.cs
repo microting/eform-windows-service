@@ -280,7 +280,7 @@ namespace MicrotingCustomActions
             {
                 session["CONNECTIONSTRING"] = session["CONNECTIONSTRING"].Replace(";", "@@");
                 if (session["OUTLOOKCONNECTIONSTRINGENABLED"] == "1")
-                    session["OUTLOOKCONNECTIONSTRING"].Replace(";", "@@"); 
+                    session["OUTLOOKCONNECTIONSTRING"] = session["OUTLOOKCONNECTIONSTRING"].Replace(";", "@@");
 
                 return ActionResult.Success;
             }
