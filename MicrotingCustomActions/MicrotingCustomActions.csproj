@@ -7,6 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A9B8A71A-21CD-4499-A058-839B2754E6EF}</ProjectGuid>
     <OutputType>Library</OutputType>
+	<WixTasksPath Condition=" '$(WixTasksPath)' == '' ">WixTasks.dll</WixTasksPath>
 	<WixCATargetsPath Condition=" '$(WixCATargetsPath)' == '' ">..\wix\3.11\sdk\wix.ca.targets</WixCATargetsPath>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MicrotingCustomActions</RootNamespace>
