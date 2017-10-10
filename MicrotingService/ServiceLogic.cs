@@ -67,6 +67,17 @@ namespace MicrotingService
             catch (SecurityException)
             {
                 sSource = "Application";
+            } catch (Exception e)
+            {
+                sSource = "Application";
+                LogEvent(e.Message);
+                try {
+                    LogEvent(e.InnerException.Message);
+                } catch
+                {
+
+                }
+                
             }
             try
             {
