@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConnectionStringsDlg.wxs" />
+    <Compile Include="CredentialsDlg.wxs" />
     <Compile Include="EmptyFIieldDlg.wxs" />
     <Compile Include="ProgressModifiedDlg.wxs" />
     <Compile Include="VerifyReadyModifiedDlg.wxs" />
@@ -32,7 +33,6 @@
     <Compile Include="ServiceNameDlg.wxs" />
     <Compile Include="WixUI_InstallDirModified.wxs" />
   </ItemGroup>
-  
   <ItemGroup>
     <Content Include="Installer.wax" />
     <Content Include="MicrotingEULA.rtf" />

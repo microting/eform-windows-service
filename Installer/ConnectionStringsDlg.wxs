@@ -16,7 +16,8 @@
         </Control>
 
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="&amp;Next">
-          <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT CONNECTIONSTRING</Publish>
+          <Publish Property="SOMETEST" Value="[OUTLOOKCONNECTIONSTRING]\[CONNECTIONSTRING]\">1</Publish>
+          <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT CONNECTIONSTRING OR (OUTLOOKCONNECTIONSTRINGENABLED AND NOT OUTLOOKCONNECTIONSTRING) </Publish>
         </Control>
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
           <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
