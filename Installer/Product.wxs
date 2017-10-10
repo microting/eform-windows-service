@@ -34,6 +34,8 @@
     <Property Id="CONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}" Secure="yes"/>
+    <Property Id="USER" Value="{}" Secure="yes"/>
+    <Property Id="PASSWORD" Value="{}" Secure="yes"/>
     
     <SetProperty Id="ARPNOMODIFY" Value="1" After="InstallValidate" Sequence="execute"/>
         
@@ -61,7 +63,7 @@
     <Binary Id="BinaryCA" SourceFile="BuildedCustomActions\MicrotingCustomActions.CA.dll"/>  
      
     <!--Runs before installation started--> 
-    <CustomAction Id="SetInstalValues" Property="Install" Value="INSTMODE=[INSTMODE];INSTALLFOLDER=[INSTALLFOLDER];CONNECTIONSTRING=[CONNECTIONSTRING];OUTLOOKCONNECTIONSTRINGENABLED=[OUTLOOKCONNECTIONSTRINGENABLED];OUTLOOKCONNECTIONSTRING=[OUTLOOKCONNECTIONSTRING];SERVICENAME=[SERVICENAME]" />
+    <CustomAction Id="SetInstalValues" Property="Install" Value="INSTMODE=[INSTMODE];INSTALLFOLDER=[INSTALLFOLDER];CONNECTIONSTRING=[CONNECTIONSTRING];OUTLOOKCONNECTIONSTRINGENABLED=[OUTLOOKCONNECTIONSTRINGENABLED];OUTLOOKCONNECTIONSTRING=[OUTLOOKCONNECTIONSTRING];SERVICENAME=[SERVICENAME];PASSWORD=[PASSWORD];USER=[USER]" />
     <CustomAction Id="SetRemoveValues" Property="RemoveService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
     <CustomAction Id="SetUpdateStopServiceValues" Property="StopBeforeUpadateService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
     <CustomAction Id="SetUpdateServiceValues" Property="UpdateService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
