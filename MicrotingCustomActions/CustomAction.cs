@@ -61,7 +61,7 @@ namespace MicrotingCustomActions
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = instalUtilPath,
-                        Arguments = $"/username={session.CustomActionData["USER"]} /password={session.CustomActionData["PASSWORD"]} /servicename=\"{serviceName}\" \"{installFolder}MicrotingService.exe\"",
+                        Arguments = $"/servicename=\"{serviceName}\" \"{installFolder}MicrotingService.exe\"",
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         CreateNoWindow = true
