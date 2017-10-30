@@ -69,7 +69,9 @@ namespace MicrotingService
                 sSource = "Application";
             } catch (Exception e)
             {
-                sSource = "Application";
+                if (!e.HResult.Equals(-2147024809))
+                    sSource = "Application";
+
                 LogEvent(e.Message);
                 try {
                     LogEvent(e.InnerException.Message);
