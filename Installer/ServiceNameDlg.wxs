@@ -11,8 +11,8 @@
         <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back"></Control> 
 
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="&amp;Next">
-          <Publish Property="INSTALLFOLDER" Value="[ProgramFilesFolder]\[ProductName]\[SERVICENAME]\">1</Publish>
-          <Publish Property="SOMETEST" Value="[ProgramFilesFolder]\[ProductName]\[SERVICENAME]\">1</Publish>
+          <Publish Property="INSTALLFOLDER" Value="[ProgramFiles64Folder]\[ProductName]\[SERVICENAME]\">1</Publish>
+          <Publish Property="SOMETEST" Value="[ProgramFiles64Folder]\[ProductName]\[SERVICENAME]\">1</Publish>
           <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT SERVICENAME</Publish> 
         </Control> 
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
