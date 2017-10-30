@@ -34,8 +34,6 @@
     <Property Id="CONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}" Secure="yes"/>
-    <!--<Property Id="USER" Value="{}" Secure="yes"/>
-    <Property Id="PASSWORD" Value="{}" Secure="yes"/>-->
     
     <SetProperty Id="ARPNOMODIFY" Value="1" After="InstallValidate" Sequence="execute"/>
         
