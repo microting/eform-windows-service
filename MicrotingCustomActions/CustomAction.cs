@@ -55,7 +55,7 @@ namespace MicrotingCustomActions
 
                 // install service
                 var netVersion = Environment.Version.ToString(3);
-                var instalUtilPath = "C:\\Windows\\Microsoft.NET\\Framework\\v" + netVersion + "\\InstallUtil.exe";
+                var instalUtilPath = "C:\\Windows\\Microsoft.NET\\Framework64\\v" + netVersion + "\\InstallUtil.exe";
                 var proc = new Process
                 {
                     StartInfo = new ProcessStartInfo
