@@ -17,7 +17,7 @@
         </Control>
 
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="&amp;Next">
-          <Publish Property="INSTALLFOLDER" Value="[ProgramFilesFolder]\[ProductName]\[SERVICENAME]">1</Publish>
+          <Publish Property="INSTALLFOLDER" Value="[ProgramFiles64Folder]\[ProductName]\[SERVICENAME]">1</Publish>
         </Control>
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
           <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish> 

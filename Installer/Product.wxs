@@ -4,7 +4,7 @@
   <?define ProductName="Microting Service" ?>
 
   <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.0.0" Manufacturer="Microting A/S" >
-    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" />
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" Platform="x64"/>
 
     <UIRef Id="WixUI_InstallDirModified"/> 
 
@@ -19,7 +19,7 @@
  
   <Fragment>   
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="ProgramFiles64Folder">
         <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)"/>   
       </Directory> 
     </Directory>    
