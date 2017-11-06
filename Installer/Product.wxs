@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\$(var.Configuration)\?>
-  <?define ProductName="Microting Service" ?>
+  <?define ProductName="Microting Windows Service" ?>
 
   <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.0.0" Manufacturer="Microting A/S" >
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" Platform="x64"/>
@@ -36,6 +36,9 @@
     <Property Id="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}" Secure="yes"/>
     <!--<Property Id="USER" Value="{}" Secure="yes"/>
     <Property Id="PASSWORD" Value="{}" Secure="yes"/>-->
+
+    <WixVariable Id="WixUIBannerBmp" Value="TopBaner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="WelcomeBanner.bmp" />
     
     <SetProperty Id="ARPNOMODIFY" Value="1" After="InstallValidate" Sequence="execute"/>
         
