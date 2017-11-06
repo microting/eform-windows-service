@@ -37,6 +37,8 @@
   <ItemGroup>
     <Content Include="Installer.wax" />
     <Content Include="MicrotingEULA.rtf" />
+    <Content Include="TopBaner.bmp" />
+    <Content Include="WelcomeBanner.bmp" />
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixUIExtension">
@@ -62,9 +64,6 @@
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>"$(ProjectDir)BuildedCustomActions\AllowMultipleVersions.exe" "$(TargetPath)"</PostBuildEvent>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug</DefineConstants>
     <SuppressValidation>true</SuppressValidation>
@@ -75,6 +74,9 @@
     <SuppressValidation>true</SuppressValidation>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>"$(ProjectDir)BuildedCustomActions\AllowMultipleVersions.exe" "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
