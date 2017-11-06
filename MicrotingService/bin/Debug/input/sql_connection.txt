@@ -1,1 +1,0 @@
-Data Source=DESKTOP-7V1APE5\SQLEXPRESS;Initial Catalog=Microting;Integrated Security=True

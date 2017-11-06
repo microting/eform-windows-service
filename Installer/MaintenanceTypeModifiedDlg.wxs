@@ -15,8 +15,6 @@
           <Publish Property="CONNECTIONSTRING" Value="{}">1</Publish>
           <Publish Property="OUTLOOKCONNECTIONSTRING" Value="{}">1</Publish>
           <Publish Property="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}">1</Publish>
-          <!--<Publish Property="USER" Value="{}">1</Publish>
-          <Publish Property="PASSWORD" Value="{}">1</Publish>-->
         </Control>
         <Control Id="Update" Type="PushButton" X="98" Y="139" Width="139" Height="33" Text="&amp;Update" >
           <Condition Action="disable">NOSERVICES</Condition>
