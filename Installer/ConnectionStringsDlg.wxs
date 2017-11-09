@@ -3,21 +3,37 @@
   <Fragment>
     <UI> 
       <Dialog Id="ConnectionStringsDlg" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes">
-        <Control Id="ConnectionStringLabel" Type="Text" X="45" Y="73" Width="100" Height="15" TabSkip="no" Text="&amp;Connection String:" />
-        <Control Id="ConnectionStringEdit" Type="Edit" X="45" Y="85" Width="220" Height="18" Property="CONNECTIONSTRING" Text="{500}" />
- 
-        <Control Id="OutlookConnectionStringCheckBox" Type="CheckBox" X="45" Y="110" Width="220" Height="15" CheckBoxValue="1" Property="OUTLOOKCONNECTIONSTRINGENABLED" Text ="&amp;Outlook Connection String:"/>
+
+        <Control Id="UseSettings" Type="CheckBox" X="45" Y="50" Width="220" Height="15" CheckBoxValue="1" Property="USEEXISTINGCONFIGURATION" Text ="&amp;Use existing configuration">
+          <Condition Action="show" >CONFIGURATIONEXISTS</Condition>
+          <Condition Action="hide">NOT CONFIGURATIONEXISTS</Condition>
+        </Control>
+        
+        <Control Id="ConnectionStringLabel" Type="Text" X="45" Y="73" Width="100" Height="15" TabSkip="no" Text="&amp;Connection String:" >
+          <Condition Action="show" >NOT USEEXISTINGCONFIGURATION</Condition>
+          <Condition Action="hide">USEEXISTINGCONFIGURATION</Condition>
+        </Control>
+        
+        <Control Id="ConnectionStringEdit" Type="Edit" X="45" Y="85" Width="220" Height="18" Property="CONNECTIONSTRING" Text="{500}" >
+          <Condition Action="show" >NOT USEEXISTINGCONFIGURATION</Condition>
+          <Condition Action="hide">USEEXISTINGCONFIGURATION</Condition>
+        </Control>
+        <Control Id="OutlookConnectionStringCheckBox" Type="CheckBox" X="45" Y="110" Width="220" Height="15" CheckBoxValue="1" Property="OUTLOOKCONNECTIONSTRINGENABLED" Text ="&amp;Outlook Connection String:">
+          <Condition Action="show" >NOT USEEXISTINGCONFIGURATION</Condition>
+          <Condition Action="hide">USEEXISTINGCONFIGURATION</Condition>
+        </Control>
         <Control Id="OutlookConnectionStringEdit" Type="Edit" X="45" Y="125" Width="220" Height="18" Property="OUTLOOKCONNECTIONSTRING" Text="{500}" >
+          <Condition Action="show" >NOT USEEXISTINGCONFIGURATION</Condition>
+          <Condition Action="hide">USEEXISTINGCONFIGURATION</Condition>
           <Condition Action="enable" >OUTLOOKCONNECTIONSTRINGENABLED = 1</Condition>
           <Condition Action="disable"><![CDATA[OUTLOOKCONNECTIONSTRINGENABLED <>1]]></Condition>
         </Control> 
+        
           
-        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
-        </Control>
-
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back"/>
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="&amp;Next">
           <Publish Property="SOMETEST" Value="[OUTLOOKCONNECTIONSTRING]\[CONNECTIONSTRING]\">1</Publish>
-          <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT CONNECTIONSTRING OR (OUTLOOKCONNECTIONSTRINGENABLED AND NOT OUTLOOKCONNECTIONSTRING) </Publish>
+          <Publish Event="SpawnDialog" Value="EmptyFieldDlg">NOT USEEXISTINGCONFIGURATION AND (NOT CONNECTIONSTRING OR (OUTLOOKCONNECTIONSTRINGENABLED AND NOT OUTLOOKCONNECTIONSTRING)) </Publish>
         </Control>
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
           <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
