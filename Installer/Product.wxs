@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\$(var.Configuration)\?>
+  <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\x64\$(var.Configuration)\?>
   <?define ProductName="Microting Windows Service" ?>
 
   <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.0.0" Manufacturer="Microting A/S" >
