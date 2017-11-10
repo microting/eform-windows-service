@@ -37,7 +37,7 @@
   <ItemGroup>
     <Content Include="Installer.wax" />
     <Content Include="MicrotingEULA.rtf" />
-    <Content Include="TopBaner.bmp" />
+    <Content Include="TopBanner.bmp" />
     <Content Include="WelcomeBanner.bmp" />
   </ItemGroup>
   <ItemGroup>

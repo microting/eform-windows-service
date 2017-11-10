@@ -37,7 +37,7 @@
     <!--<Property Id="USER" Value="{}" Secure="yes"/>
     <Property Id="PASSWORD" Value="{}" Secure="yes"/>-->
 
-    <WixVariable Id="WixUIBannerBmp" Value="TopBaner.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="WelcomeBanner.bmp" />
     
     <SetProperty Id="ARPNOMODIFY" Value="1" After="InstallValidate" Sequence="execute"/>
