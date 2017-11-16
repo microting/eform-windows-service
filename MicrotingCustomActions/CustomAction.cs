@@ -197,6 +197,10 @@ namespace MicrotingCustomActions
                     }
                 };
 
+                // fix: sometimes service is not unistalled completely
+                RunProcess(@"sc", $"stop {serviceName}");
+                RunProcess(@"sc", $"delete {serviceName}");
+
                 proc.Start();
                 while (!proc.HasExited)
                     Thread.Sleep(500);
@@ -270,6 +274,9 @@ namespace MicrotingCustomActions
                     service.Stop();
 
                 service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(30));
+                
+                //fix sometimes service is not stoping, this is workaround
+                RunProcess(@"sc", $"stop {serviceName}");
 
                 var regkey = Registry.LocalMachine.OpenSubKey($@"SYSTEM\CurrentControlSet\services\{serviceName}");
 
@@ -388,6 +395,21 @@ namespace MicrotingCustomActions
             }
 
             return configsFound;
+        }
+
+        static void RunProcess(string fileName, string arguments, string workingDirrectory = null)
+        {
+            using (var process = Process.Start(new ProcessStartInfo
+            {
+                FileName = fileName,
+                Arguments = arguments,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                UseShellExecute = false,
+                WorkingDirectory = workingDirrectory
+            }))
+            {
+                process.WaitForExit();
+            }
         }
 
         private static bool SaveConfigFolders(string[] configFolders, string tmp, string dir)
