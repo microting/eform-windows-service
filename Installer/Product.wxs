@@ -131,6 +131,12 @@
       <Component Id="OutlookSql.dll" Guid="*">
         <File Id="OutlookSql.dll" Name="OutlookSql.dll" Source="$(var.MicrotingService_TargetDir)OutlookSql.dll" />
       </Component>
+      <Component Id="OutlookExchangeOnlineAPI.dll" Guid="*">
+        <File Id="OutlookExchangeOnlineAPI.dll" Name="OutlookExchangeOnlineAPI.dll" Source="$(var.MicrotingService_TargetDir)OutlookExchangeOnlineAPI.dll" />
+      </Component>
+      <Component Id="OutlookOfficeOnline.dll" Guid="*">
+        <File Id="OutlookOfficeOnline.dll" Name="OutlookOfficeOnline.dll" Source="$(var.MicrotingService_TargetDir)OutlookOfficeOnline.dll" />
+      </Component>
     </ComponentGroup>
   </Fragment>
 </Wix>
