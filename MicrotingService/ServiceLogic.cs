@@ -138,7 +138,7 @@ namespace MicrotingService
                         string outlookSqlStr = File.ReadAllText(GetServiceLocation() + "input\\sql_connection_outLook.txt").Trim();
                         LogEvent("outlookSqlStr, " + outlookSqlStr);
 
-                        outLook.Start(outlookSqlStr);
+                        outLook.Start(outlookSqlStr, GetServiceLocation());
                         LogEvent("Outlook started");
                     }
                     #endregion

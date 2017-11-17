@@ -137,6 +137,9 @@
       <Component Id="OutlookOfficeOnline.dll" Guid="*">
         <File Id="OutlookOfficeOnline.dll" Name="OutlookOfficeOnline.dll" Source="$(var.MicrotingService_TargetDir)OutlookOfficeOnline.dll" />
       </Component>
+      <Component Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Guid="*">
+        <File Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Source="$(var.MicrotingService_TargetDir)Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
+      </Component>
     </ComponentGroup>
   </Fragment>
 </Wix>
