@@ -34,11 +34,13 @@
     <Property Id="CONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}" Secure="yes"/>
-    <Property Id="KEEPFOLDERS" Value="input,log" Secure="yes"/>
+    <Property Id="KEEPFOLDERS" Value="input,log,certs" Secure="yes"/>
     <Property Id="KEEPFILES" Value="{}" Secure="yes"/>
     <Property Id="KEEPSETTINGS" Value="1" Secure="yes"/>
     <Property Id="USEEXISTINGCONFIGURATION" Value="{}" Secure="yes"/>
     <Property Id="CONFIGURATIONEXISTS" Value="{}" Secure="yes"/>
+    <Property Id="APPID" Value="{}" Secure="yes"/>
+    <Property Id="DIRID" Value="{}" Secure="yes"/>
     <!--<Property Id="USER" Value="{}" Secure="yes"/>
     <Property Id="PASSWORD" Value="{}" Secure="yes"/>-->
 
@@ -74,7 +76,7 @@
     <Binary Id="BinaryCA" SourceFile="BuildedCustomActions\MicrotingCustomActions.CA.dll"/>  
      
     <!--Runs before installation started--> 
-    <CustomAction Id="SetInstalValues" Property="Install" Value="INSTMODE=[INSTMODE];INSTALLFOLDER=[INSTALLFOLDER];CONNECTIONSTRING=[CONNECTIONSTRING];OUTLOOKCONNECTIONSTRINGENABLED=[OUTLOOKCONNECTIONSTRINGENABLED];OUTLOOKCONNECTIONSTRING=[OUTLOOKCONNECTIONSTRING];SERVICENAME=[SERVICENAME];USEEXISTINGCONFIGURATION=[USEEXISTINGCONFIGURATION];CONFIGURATIONEXISTS=[CONFIGURATIONEXISTS];KEEPFOLDERS=[KEEPFOLDERS];KEEPFILES=[KEEPFILES]" />
+    <CustomAction Id="SetInstalValues" Property="Install" Value="INSTMODE=[INSTMODE];INSTDIR=[INSTALLFOLDER];CS=[CONNECTIONSTRING];OUTLOOKCSENABLED=[OUTLOOKCONNECTIONSTRINGENABLED];OUTLOOKCS=[OUTLOOKCONNECTIONSTRING];SERVICENAME=[SERVICENAME];USECONFIG=[USEEXISTINGCONFIGURATION];CONFIGEXISTS=[CONFIGURATIONEXISTS];KEEPFOLDERS=[KEEPFOLDERS];KEEPFILES=[KEEPFILES];APPID=[APPID];DIRID=[DIRID]" />
     <CustomAction Id="SetRemoveValues" Property="RemoveService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME];KEEPFOLDERS=[KEEPFOLDERS];KEEPSETTINGS=[KEEPSETTINGS];KEEPFILES=[KEEPFILES]" />
     <CustomAction Id="SetUpdateStopServiceValues" Property="StopBeforeUpadateService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
     <CustomAction Id="SetUpdateServiceValues" Property="UpdateService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />

@@ -25,12 +25,12 @@
 
       <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
       
-      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeModifiedDlg">1</Publish>
+      <Publish Dialog="WelcomeDlgModified" Control="Next" Event="NewDialog" Value="MaintenanceTypeModifiedDlg">1</Publish>
        
       <Publish Dialog="MaintenanceTypeModifiedDlg" Control="Update" Event="NewDialog" Value="ServiceNameSelectDlg">1</Publish>
       <Publish Dialog="MaintenanceTypeModifiedDlg" Control="Remove" Event="NewDialog" Value="ServiceNameSelectDlg">1</Publish>
       <Publish Dialog="MaintenanceTypeModifiedDlg" Control="Install" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
-      <Publish Dialog="MaintenanceTypeModifiedDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeModifiedDlg" Control="Back" Event="NewDialog" Value="WelcomeDlgModified">1</Publish>
 
       <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeModifiedDlg">1</Publish>
       <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="ServiceNameDlg">LicenseAccepted = "1"</Publish>
@@ -39,7 +39,11 @@
       <Publish Dialog="ServiceNameDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg">1</Publish>
      
       <Publish Dialog="ConnectionStringsDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg">1</Publish>
-      <Publish Dialog="ConnectionStringsDlg" Control="Next" Event="NewDialog" Value="VerifyReadyModifiedDlg">1</Publish>
+      <Publish Dialog="ConnectionStringsDlg" Control="Next" Event="NewDialog" Value="VerifyReadyModifiedDlg">NOT OUTLOOKCONNECTIONSTRINGENABLED</Publish>
+      <Publish Dialog="ConnectionStringsDlg" Control="Next" Event="NewDialog" Value="ApplicationIdDlg">OUTLOOKCONNECTIONSTRINGENABLED</Publish>
+
+      <Publish Dialog="ApplicationIdDlg" Control="Back" Event="NewDialog" Value="ConnectionStringsDlg">1</Publish>
+      <Publish Dialog="ApplicationIdDlg" Control="Next" Event="NewDialog" Value="VerifyReadyModifiedDlg">1</Publish>
       
       <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="ServiceNameDlg">1</Publish>
       <Publish Dialog="InstallDirDlg" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
@@ -52,7 +56,8 @@
       <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
       <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
 
-      <Publish Dialog="VerifyReadyModifiedDlg" Control="Back" Event="NewDialog" Value="ConnectionStringsDlg" Order="1">WixUI_InstallMode = "Install"</Publish>
+      <Publish Dialog="VerifyReadyModifiedDlg" Control="Back" Event="NewDialog" Value="ApplicationIdDlg" Order="1">WixUI_InstallMode = "Install" AND OUTLOOKCONNECTIONSTRINGENABLED</Publish>
+      <Publish Dialog="VerifyReadyModifiedDlg" Control="Back" Event="NewDialog" Value="ConnectionStringsDlg" Order="1">WixUI_InstallMode = "Install"AND NOT OUTLOOKCONNECTIONSTRINGENABLED</Publish>
       <Publish Dialog="VerifyReadyModifiedDlg" Control="Back" Event="NewDialog" Value="ServiceNameSelectDlg" Order="1">WixUI_InstallMode = "Update"</Publish>
       <Publish Dialog="VerifyReadyModifiedDlg" Control="Back" Event="NewDialog" Value="KeepSettingsDlg" Order="1">WixUI_InstallMode = "Remove"</Publish>
 
