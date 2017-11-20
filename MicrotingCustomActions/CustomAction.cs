@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Deployment.WindowsInstaller;
 using Microsoft.Win32;
+using MicrotingCustomActions.Helpers;
 
 namespace MicrotingCustomActions
 {
@@ -22,10 +23,11 @@ namespace MicrotingCustomActions
                 if (session.CustomActionData["INSTMODE"] != "Install")
                     return ActionResult.Success;
 
-                var installFolder = session.CustomActionData["INSTALLFOLDER"];
+                var installFolder = session.CustomActionData["INSTDIR"];
+                var serviceName = session.CustomActionData["SERVICENAME"];
+                var configurationExists = session.CustomActionData["CONFIGEXISTS"] == "1";
+                var useExistingConfiguration = session.CustomActionData["USECONFIG"] == "1";
 
-                var configurationExists = session.CustomActionData["CONFIGURATIONEXISTS"] == "1";
-                var useExistingConfiguration = session.CustomActionData["USEEXISTINGCONFIGURATION"] == "1";
                 if (configurationExists && useExistingConfiguration)
                     HandlePreviousConfigs(session, installFolder);
                 else
@@ -38,14 +40,23 @@ namespace MicrotingCustomActions
 
                     // save connection strings
                     File.WriteAllText(inputFolder + "\\sql_connection_sdkCore.txt",
-                        session.CustomActionData["CONNECTIONSTRING"].Replace("@@", ";"));
-                    if (session.CustomActionData["OUTLOOKCONNECTIONSTRINGENABLED"] == "1")
+                        session.CustomActionData["CS"].Replace("@@", ";"));
+                    if (session.CustomActionData["OUTLOOKCSENABLED"] == "1")
+                    {
+                        var certsFolder = Path.Combine(installFolder, "certs");
+                        Directory.CreateDirectory(certsFolder);
+
                         File.WriteAllText(inputFolder + "\\sql_connection_outlook.txt",
-                            session.CustomActionData["OUTLOOKCONNECTIONSTRING"].Replace("@@", ";"));
+                            session.CustomActionData["OUTLOOKCS"].Replace("@@", ";"));
+     
+                        CertHelper.GenerateSelfSignedCert(serviceName, "key.cer", "cert.pfx", certsFolder);
+                        File.WriteAllText(certsFolder + "\\application_id.txt", session.CustomActionData["APPID"]);
+                        File.WriteAllText(certsFolder + "\\directory_id.txt", session.CustomActionData["DIRID"]);
+                    }
+                        
                 }
 
                 // save products list into registry
-                var serviceName = session.CustomActionData["SERVICENAME"];
                 var vendorName = "Microting";
                 var soft = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
                 if (!soft.GetSubKeyNames().Contains(vendorName))

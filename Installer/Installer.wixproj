@@ -25,6 +25,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConnectionStringsDlg.wxs" />
+    <Compile Include="ApplicationIdDlg.wxs" />
+    <Compile Include="WelcomeDlgModified.wxs" />
     <Compile Include="KeepSettingsDlg.wxs" />
     <Compile Include="EmptyFIieldDlg.wxs" />
     <Compile Include="ProgressModifiedDlg.wxs" />
