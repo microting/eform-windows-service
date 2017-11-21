@@ -342,7 +342,7 @@ namespace MicrotingCustomActions
                     return ActionResult.Success;
                 }
 
-                var tmp = Path.Combine(Path.GetTempPath(), "MicrotingServiceTemp");
+                var tmp = Path.Combine("c:\\", "MicrotingServiceTemp");
                 Directory.CreateDirectory(tmp);
                 Directory.CreateDirectory(Path.Combine(tmp, "files"));
                 Directory.CreateDirectory(Path.Combine(tmp, "dirs"));
@@ -372,7 +372,7 @@ namespace MicrotingCustomActions
         {
             var keepFiles = session.CustomActionData["KEEPFILES"].Split(',');
             var keepFolders = session.CustomActionData["KEEPFOLDERS"].Split(',');
-            var tmpConfigs = Path.Combine(Path.GetTempPath(), "MicrotingServiceTemp");
+            var tmpConfigs = Path.Combine("c:\\", "MicrotingServiceTemp");
 
             foreach (var keepFolder in keepFolders)
             {
