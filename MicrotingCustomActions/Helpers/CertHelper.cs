@@ -27,14 +27,15 @@ namespace MicrotingCustomActions.Helpers
 
             var caPrivKey = GenerateCACertificate($"CN={computer}", out subjectKeyPair);
 
-            byte[] privKeyData = caPrivKey.Export(X509ContentType.Pfx, "123qweASDZXC");
-            File.WriteAllBytes(Path.Combine(location, privateKeyName), privKeyData);
-
             var cert = GenerateSelfSignedCertificate($"CN={serviceName}", $"CN={computer}", subjectKeyPair.Private);
             AddCertToStore(cert, StoreName.My, StoreLocation.CurrentUser);
 
             byte[] certData = cert.Export(X509ContentType.Cert, "123qweASDZXC");
             File.WriteAllBytes(Path.Combine(location, certName), certData);
+
+            byte[] privKeyData = cert.Export(X509ContentType.Pkcs12, "123qweASDZXC");
+            File.WriteAllBytes(Path.Combine(location, privateKeyName), privKeyData);
+
         }
 
         private static X509Certificate2 GenerateSelfSignedCertificate(string subjectName, string issuerName, AsymmetricKeyParameter issuerPrivKey, int keyStrength = 2048)
