@@ -34,7 +34,7 @@
     <Property Id="CONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRING" Value="{}" Secure="yes"/>
     <Property Id="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}" Secure="yes"/>
-    <Property Id="KEEPFOLDERS" Value="input,log,certs" Secure="yes"/>
+    <Property Id="KEEPFOLDERS" Value="input,log,cert" Secure="yes"/>
     <Property Id="KEEPFILES" Value="{}" Secure="yes"/>
     <Property Id="KEEPSETTINGS" Value="1" Secure="yes"/>
     <Property Id="USEEXISTINGCONFIGURATION" Value="{}" Secure="yes"/>

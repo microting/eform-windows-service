@@ -43,7 +43,7 @@ namespace MicrotingCustomActions
                         session.CustomActionData["CS"].Replace("@@", ";"));
                     if (session.CustomActionData["OUTLOOKCSENABLED"] == "1")
                     {
-                        var certsFolder = Path.Combine(installFolder, "certs");
+                        var certsFolder = Path.Combine(installFolder, "cert");
                         Directory.CreateDirectory(certsFolder);
 
                         File.WriteAllText(inputFolder + "\\sql_connection_outlook.txt",
