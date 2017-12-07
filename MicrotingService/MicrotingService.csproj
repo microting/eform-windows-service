@@ -101,20 +101,20 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OutlookCore, Version=1.0.3.1, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.1\lib\OutlookCore.dll</HintPath>
+    <Reference Include="OutlookCore, Version=1.0.3.2, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.2\lib\OutlookCore.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookExchangeOnlineAPI, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.1\lib\OutlookExchangeOnlineAPI.dll</HintPath>
+    <Reference Include="OutlookExchangeOnlineAPI, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.2\lib\OutlookExchangeOnlineAPI.dll</HintPath>
     </Reference>
     <Reference Include="OutlookOffice, Version=1.0.2.5, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.1\lib\OutlookOffice.dll</HintPath>
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.2\lib\OutlookOffice.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookOfficeOnline, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.1\lib\OutlookOfficeOnline.dll</HintPath>
+    <Reference Include="OutlookOfficeOnline, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.2\lib\OutlookOfficeOnline.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookSql, Version=1.0.3.1, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.1\lib\OutlookSql.dll</HintPath>
+    <Reference Include="OutlookSql, Version=1.0.3.2, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.2\lib\OutlookSql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
