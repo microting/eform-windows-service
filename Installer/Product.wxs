@@ -3,7 +3,7 @@
   <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\x64\$(var.Configuration)\?>
   <?define ProductName="Microting Windows Service" ?>
 
-  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.7" Manufacturer="Microting A/S" >
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.10" Manufacturer="Microting A/S" >
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" Platform="x64"/>
 
     <UIRef Id="WixUI_InstallDirModified"/> 
@@ -126,9 +126,6 @@
       </Component>
       <Component Id="OutlookCore.dll" Guid="*">
         <File Id="OutlookCore.dll" Name="OutlookCore.dll" Source="$(var.MicrotingService_TargetDir)OutlookCore.dll" />
-      </Component>
-      <Component Id="OutlookOffice.dll" Guid="*">
-        <File Id="OutlookOffice.dll" Name="OutlookOffice.dll" Source="$(var.MicrotingService_TargetDir)OutlookOffice.dll" />
       </Component>
       <Component Id="OutlookSql.dll" Guid="*">
         <File Id="OutlookSql.dll" Name="OutlookSql.dll" Source="$(var.MicrotingService_TargetDir)OutlookSql.dll" />
