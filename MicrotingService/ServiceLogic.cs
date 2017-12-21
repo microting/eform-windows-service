@@ -116,6 +116,7 @@ namespace MicrotingService
                     try
                     {
                         sdkCore.HandleEventException -= CoreEventException;
+                        sdkCore.HandleCaseRetrived += _caseRetrived;
                         sdkCore.HandleCaseCompleted += _caseCompleted;
                         LogEvent("Core exception events disconnected (if needed)");
                     }
@@ -242,31 +243,90 @@ namespace MicrotingService
         // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         #endregion
 
+        #region _caseRetrived
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        private void _caseRetrived(object sender, EventArgs args)
+        {
+
+            //LogEvent(String.Format("_caseCompleted called"));
+            //LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
+            Case_Dto trigger = (Case_Dto)sender;
+            int siteId = trigger.SiteUId;
+            string caseType = trigger.CaseType;
+            string caseUid = trigger.CaseUId;
+            string mUId = trigger.MicrotingUId;
+            string checkUId = trigger.CheckUId;
+            string CaseId = trigger.CaseId.ToString();
+            LogEvent("_caseRetrived siteId is :'" + siteId + "'");
+            LogEvent("_caseRetrived caseType is :'" + caseType + "'");
+            LogEvent("_caseRetrived caseUid is :'" + caseUid + "'");
+            LogEvent("_caseRetrived mUId is :'" + mUId + "'");
+            LogEvent("_caseRetrived checkUId is :'" + checkUId + "'");
+            LogEvent("_caseRetrived CaseId is :'" + CaseId + "'");
+
+
+            try
+            {
+                outLook.MarkAppointmentRetrived(CaseId);
+            }
+            catch (Exception ex)
+            {
+                LogException("outLook.MarkAppointmentRetrived threw the exception: " + ex.Message);
+            }
+
+
+            //string nav_id = trigger.Custom;
+
+            //string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
+            //string newPath = inboundPath.Replace("inbound", "outbound") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
+            //LogEvent(String.Format("_caseCompleted called oldPath is : " + oldPath));
+
+            //File.Move(oldPath, newPath);
+            //LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
+
+
+        }
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        #endregion
+
         #region _caseCreated
         // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         private void _caseCompleted(object sender, EventArgs args)
         {
-            if (fileHandlingEnabled)
+            //LogEvent(String.Format("_caseCompleted called"));
+            //LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
+            Case_Dto trigger = (Case_Dto)sender;
+            int siteId = trigger.SiteUId;
+            string caseType = trigger.CaseType;
+            string caseUid = trigger.CaseUId;
+            string mUId = trigger.MicrotingUId;
+            string checkUId = trigger.CheckUId;
+            string CaseId = trigger.CaseId.ToString();
+            LogEvent("_caseCompleted siteId is :'" + siteId + "'");
+            LogEvent("_caseCompleted caseType is :'" + caseType + "'");
+            LogEvent("_caseCompleted caseUid is :'" + caseUid + "'");
+            LogEvent("_caseCompleted mUId is :'" + mUId + "'");
+            LogEvent("_caseCompleted checkUId is :'" + checkUId + "'");
+            LogEvent("_caseCompleted CaseId is :'" + CaseId + "'");
+
+            try
             {
-
-                LogEvent(String.Format("_caseCompleted called"));
-                LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
-                Case_Dto trigger = (Case_Dto)sender;
-                int siteId = trigger.SiteUId;
-                string caseType = trigger.CaseType;
-                string caseUid = trigger.CaseUId;
-                string mUId = trigger.MicrotingUId;
-                string checkUId = trigger.CheckUId;
-
-                string nav_id = trigger.Custom;
-
-                string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
-                string newPath = inboundPath.Replace("inbound", "outbound") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
-                LogEvent(String.Format("_caseCompleted called oldPath is : " + oldPath));
-
-                File.Move(oldPath, newPath);
-                LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
+                outLook.MarkAppointmentCompleted(CaseId);
             }
+            catch (Exception ex)
+            {
+                LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
+            }
+
+            //string nav_id = trigger.Custom;
+
+            //string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
+            //string newPath = inboundPath.Replace("inbound", "outbound") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
+            //LogEvent(String.Format("_caseCompleted called oldPath is : " + oldPath));
+
+            //File.Move(oldPath, newPath);
+            //LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
+
         }
         // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         #endregion
