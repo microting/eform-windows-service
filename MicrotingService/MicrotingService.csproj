@@ -101,17 +101,17 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OutlookCore, Version=1.0.3.11, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.11\lib\OutlookCore.dll</HintPath>
+    <Reference Include="OutlookCore, Version=1.0.3.12, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.12\lib\OutlookCore.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookExchangeOnlineAPI, Version=1.0.3.11, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.11\lib\OutlookExchangeOnlineAPI.dll</HintPath>
+    <Reference Include="OutlookExchangeOnlineAPI, Version=1.0.3.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.12\lib\OutlookExchangeOnlineAPI.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookOfficeOnline, Version=1.0.3.11, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.11\lib\OutlookOfficeOnline.dll</HintPath>
+    <Reference Include="OutlookOfficeOnline, Version=1.0.3.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.12\lib\OutlookOfficeOnline.dll</HintPath>
     </Reference>
-    <Reference Include="OutlookSql, Version=1.0.3.11, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.11\lib\OutlookSql.dll</HintPath>
+    <Reference Include="OutlookSql, Version=1.0.3.12, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Microting.OutlookAddon.1.0.3.12\lib\OutlookSql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

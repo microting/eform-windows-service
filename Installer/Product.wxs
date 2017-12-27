@@ -3,7 +3,7 @@
   <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\x64\$(var.Configuration)\?>
   <?define ProductName="Microting Windows Service" ?>
 
-  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.16" Manufacturer="Microting A/S" >
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.17" Manufacturer="Microting A/S" >
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" Platform="x64"/>
 
     <UIRef Id="WixUI_InstallDirModified"/> 
