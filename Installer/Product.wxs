@@ -3,7 +3,7 @@
   <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\x64\$(var.Configuration)\?>
   <?define ProductName="Microting Windows Service" ?>
 
-  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.17" Manufacturer="Microting A/S" >
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.18" Manufacturer="Microting A/S" >
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" Platform="x64"/>
 
     <UIRef Id="WixUI_InstallDirModified"/> 
@@ -85,8 +85,8 @@
 
   <Fragment>
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="eFormCore.dll" Guid="*">
-        <File Id="eFormCore.dll" Name="eFormCore.dll" Source="$(var.MicrotingService_TargetDir)eFormCore.dll" />
+      <Component Id="Microting.eForm.dll" Guid="*">
+        <File Id="Microting.eForm.dll" Name="Microting.eForm.dll" Source="$(var.MicrotingService_TargetDir)Microting.eForm.dll" />
       </Component>
       <Component Id="MicrotingService.exe" Guid="*">
         <File Id="MicrotingService.exe" Name="MicrotingService.exe" Source="$(var.MicrotingService_TargetDir)MicrotingService.exe" />
@@ -138,6 +138,24 @@
       </Component>
       <Component Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Guid="*">
         <File Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Source="$(var.MicrotingService_TargetDir)Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
+      </Component>
+      <Component Id="Castle.Core.dll" Guid="*">
+        <File Id="Castle.Core.dll" Name="Castle.Core.dll" Source="$(var.MicrotingService_TargetDir)Castle.Core.dll" />
+      </Component>
+      <Component Id="Castle.Windsor.dll" Guid="*">
+        <File Id="Castle.Windsor.dll" Name="Castle.Windsor.dll" Source="$(var.MicrotingService_TargetDir)Castle.Windsor.dll" />
+      </Component>
+      <Component Id="eForm.Messages.dll" Guid="*">
+        <File Id="eForm.Messages.dll" Name="eForm.Messages.dll" Source="$(var.MicrotingService_TargetDir)eForm.Messages.dll" />
+      </Component>
+      <Component Id="Rebus.CastleWindsor.dll" Guid="*">
+        <File Id="Rebus.CastleWindsor.dll" Name="Rebus.CastleWindsor.dll" Source="$(var.MicrotingService_TargetDir)Rebus.CastleWindsor.dll" />
+      </Component>
+      <Component Id="Rebus.dll" Guid="*">
+        <File Id="Rebus.dll" Name="Rebus.dll" Source="$(var.MicrotingService_TargetDir)Rebus.dll" />
+      </Component>
+      <Component Id="Rebus.SqlServer.dll" Guid="*">
+        <File Id="Rebus.SqlServer.dll" Name="Rebus.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)Rebus.SqlServer.dll" />
       </Component>
     </ComponentGroup>
   </Fragment>
