@@ -100,42 +100,25 @@
       <Component Id="AWSSDK.SQS.dll" Guid="*">
         <File Id="AWSSDK.SQS.dll" Name="AWSSDK.SQS.dll" Source="$(var.MicrotingService_TargetDir)AWSSDK.SQS.dll" />
       </Component>
-      <Component Id="eFormCommunicator.dll" Guid="*">
-        <File Id="eFormCommunicator.dll" Name="eFormCommunicator.dll" Source="$(var.MicrotingService_TargetDir)eFormCommunicator.dll" />
-      </Component>
-      <Component Id="eFormData.dll" Guid="*">
-        <File Id="eFormData.dll" Name="eFormData.dll" Source="$(var.MicrotingService_TargetDir)eFormData.dll" />
-      </Component>
-      <Component Id="eFormShared.dll" Guid="*">
-        <File Id="eFormShared.dll" Name="eFormShared.dll" Source="$(var.MicrotingService_TargetDir)eFormShared.dll" />
-      </Component>
-      <Component Id="eFormSqlController.dll" Guid="*"> 
-        <File Id="eFormSqlController.dll" Name="eFormSqlController.dll" Source="$(var.MicrotingService_TargetDir)eFormSqlController.dll" />
-      </Component>
-      <Component Id="eFormSubscriber.dll" Guid="*"> 
-        <File Id="eFormSubscriber.dll" Name="eFormSubscriber.dll" Source="$(var.MicrotingService_TargetDir)eFormSubscriber.dll" />
-      </Component>
+      
       <Component Id="EntityFramework.dll" Guid="*">
         <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.MicrotingService_TargetDir)EntityFramework.dll" />
       </Component>
       <Component Id="EntityFramework.SqlServer.dll" Guid="*">
         <File Id="EntityFramework.SqlServer.dll" Name="EntityFramework.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)EntityFramework.SqlServer.dll" />
       </Component>
+      <Component Id="MySql.Data.dll" Guid="*">
+        <File Id="MySql.Data.dll" Name="MySql.Data.dll" Source="$(var.MicrotingService_TargetDir)MySql.Data.dll" />
+      </Component>
+      <Component Id="MySql.Data.Entity.EF6.dll" Guid="*">
+        <File Id="MySql.Data.Entity.EF6.dll" Name="MySql.Data.Entity.EF6.dll" Source="$(var.MicrotingService_TargetDir)MySql.Data.Entity.EF6.dll" />
+      </Component>
       <Component Id="Newtonsoft.Json.dll" Guid="*">
         <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.MicrotingService_TargetDir)Newtonsoft.Json.dll" />
       </Component>
-      <Component Id="OutlookCore.dll" Guid="*">
-        <File Id="OutlookCore.dll" Name="OutlookCore.dll" Source="$(var.MicrotingService_TargetDir)OutlookCore.dll" />
-      </Component>
-      <Component Id="OutlookSql.dll" Guid="*">
-        <File Id="OutlookSql.dll" Name="OutlookSql.dll" Source="$(var.MicrotingService_TargetDir)OutlookSql.dll" />
-      </Component>
-      <Component Id="OutlookExchangeOnlineAPI.dll" Guid="*">
-        <File Id="OutlookExchangeOnlineAPI.dll" Name="OutlookExchangeOnlineAPI.dll" Source="$(var.MicrotingService_TargetDir)OutlookExchangeOnlineAPI.dll" />
-      </Component>
-      <Component Id="OutlookOfficeOnline.dll" Guid="*">
-        <File Id="OutlookOfficeOnline.dll" Name="OutlookOfficeOnline.dll" Source="$(var.MicrotingService_TargetDir)OutlookOfficeOnline.dll" />
-      </Component>
+      <Component Id="Microting.OutlookAddon.dll" Guid="*">
+        <File Id="Microting.OutlookAddon.dll" Name="Microting.OutlookAddon.dll" Source="$(var.MicrotingService_TargetDir)Microting.OutlookAddon.dll" />
+      </Component>      
       <Component Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Guid="*">
         <File Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Source="$(var.MicrotingService_TargetDir)Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
       </Component>
@@ -144,9 +127,6 @@
       </Component>
       <Component Id="Castle.Windsor.dll" Guid="*">
         <File Id="Castle.Windsor.dll" Name="Castle.Windsor.dll" Source="$(var.MicrotingService_TargetDir)Castle.Windsor.dll" />
-      </Component>
-      <Component Id="eForm.Messages.dll" Guid="*">
-        <File Id="eForm.Messages.dll" Name="eForm.Messages.dll" Source="$(var.MicrotingService_TargetDir)eForm.Messages.dll" />
       </Component>
       <Component Id="Rebus.CastleWindsor.dll" Guid="*">
         <File Id="Rebus.CastleWindsor.dll" Name="Rebus.CastleWindsor.dll" Source="$(var.MicrotingService_TargetDir)Rebus.CastleWindsor.dll" />
