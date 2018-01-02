@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrotingService", "MicrotingService\MicrotingService.csproj", "{49103384-B736-4A6C-921D-508FF8DEC705}"
 EndProject
@@ -25,6 +25,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Instalation", "Instalation", "{61106A55-FA9E-4EE4-885E-E4FE23F00175}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllowMultipleVersions", "AllowMultipleVersions\AllowMultipleVersions.csproj", "{2B167169-F122-4F1F-9881-0DC8C07585B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{92F37F91-E562-4F63-9FB8-5059E98FE324}"
+	ProjectSection(SolutionItems) = preProject
+		CodeCoverage.runsettings = CodeCoverage.runsettings
+		TestSettings.runsettings = TestSettings.runsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F3ADCD7B-BB96-4C56-A46D-BB78909835A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,5 +76,8 @@ Global
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D} = {61106A55-FA9E-4EE4-885E-E4FE23F00175}
 		{A9B8A71A-21CD-4499-A058-839B2754E6EF} = {61106A55-FA9E-4EE4-885E-E4FE23F00175}
 		{2B167169-F122-4F1F-9881-0DC8C07585B8} = {61106A55-FA9E-4EE4-885E-E4FE23F00175}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDE5F2E9-42E7-43A6-B9D5-D333C082F871}
 	EndGlobalSection
 EndGlobal
