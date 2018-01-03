@@ -67,19 +67,22 @@ namespace MicrotingService
             catch (SecurityException)
             {
                 sSource = "Application";
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 if (!e.HResult.Equals(-2147024809))
                     sSource = "Application";
 
                 LogEvent(e.Message);
-                try {
+                try
+                {
                     LogEvent(e.InnerException.Message);
-                } catch
+                }
+                catch
                 {
 
                 }
-                
+
             }
             try
             {
@@ -98,7 +101,7 @@ namespace MicrotingService
         }
 
         #region public state
-        public void         Start()
+        public void Start()
         {
             try
             {
@@ -121,7 +124,7 @@ namespace MicrotingService
                         LogEvent("Core exception events disconnected (if needed)");
                     }
                     catch { }
-                   
+
                     sdkCore.HandleEventException += CoreEventException;
                     LogEvent("Core exception events connected");
                     #endregion
@@ -170,7 +173,7 @@ namespace MicrotingService
             }
         }
 
-        public void         Stop()
+        public void Stop()
         {
             try
             {
@@ -190,7 +193,7 @@ namespace MicrotingService
             }
         }
 
-        public void         OverrideServiceLocation(string serviceLocation)
+        public void OverrideServiceLocation(string serviceLocation)
         {
             this.serviceLocation = serviceLocation;
             LogEvent("serviceLocation:'" + serviceLocation + "'");
@@ -198,7 +201,7 @@ namespace MicrotingService
         #endregion
 
         #region private
-        private string      GetServiceLocation()
+        private string GetServiceLocation()
         {
             if (serviceLocation != "")
                 return serviceLocation;
@@ -222,7 +225,8 @@ namespace MicrotingService
                 int siteId = int.Parse(e.Name.Split(delimiter)[0]);
                 string navId = e.Name.Split(delimiter)[1].Replace(".xml", "");
                 string rawXml = "";
-                foreach ( string line in File.ReadLines(e.FullPath)) {
+                foreach (string line in File.ReadLines(e.FullPath))
+                {
                     rawXml += line;
                 }
                 eFormData.MainElement mainElement = sdkCore.TemplateFromXml(rawXml);
@@ -331,7 +335,7 @@ namespace MicrotingService
         // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         #endregion
 
-        protected String    GetServiceName()
+        protected String GetServiceName()
         {
             // Calling System.ServiceProcess.ServiceBase::ServiceNamea allways returns
             // an empty string,
@@ -354,7 +358,7 @@ namespace MicrotingService
             throw new Exception("Can not get the ServiceName");
         }
 
-        private void        CoreEventException(object sender, EventArgs args)
+        private void CoreEventException(object sender, EventArgs args)
         {
             //DOSOMETHING: changed to fit your wishes and needs 
             Exception ex = (Exception)sender;
@@ -370,7 +374,7 @@ namespace MicrotingService
             { }
         }
 
-        private void        LogException(string appendText)
+        private void LogException(string appendText)
         {
             try
             {

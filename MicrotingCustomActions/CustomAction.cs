@@ -48,12 +48,12 @@ namespace MicrotingCustomActions
 
                         File.WriteAllText(inputFolder + "\\sql_connection_outlook.txt",
                             session.CustomActionData["OUTLOOKCS"].Replace("@@", ";"));
-     
+
                         CertHelper.GenerateSelfSignedCert(serviceName, "key.cer", "cert.pfx", certsFolder);
                         File.WriteAllText(certsFolder + "\\application_id.txt", session.CustomActionData["APPID"]);
                         File.WriteAllText(certsFolder + "\\directory_id.txt", session.CustomActionData["DIRID"]);
                     }
-                        
+
                 }
 
                 // save products list into registry
@@ -64,7 +64,7 @@ namespace MicrotingCustomActions
 
                 var vendor = soft.OpenSubKey(vendorName, true);
                 var services = vendor?.GetValue("Services")?.ToString();
-                var list = new List<string> {serviceName};
+                var list = new List<string> { serviceName };
                 if (!string.IsNullOrEmpty(services))
                     list.Add(services);
                 if (services != null && !services.Contains(serviceName))
@@ -104,7 +104,7 @@ namespace MicrotingCustomActions
                     service.Start();
 
                 service.WaitForStatus(ServiceControllerStatus.Running);
-                
+
                 return ActionResult.Success;
             }
             catch (Exception ex)
@@ -175,7 +175,7 @@ namespace MicrotingCustomActions
         public static ActionResult UninstallServiceCA(Session session)
         {
             try
-            {  
+            {
                 if (session.CustomActionData["INSTMODE"] != "Remove")
                     return ActionResult.Success;
 
@@ -192,7 +192,7 @@ namespace MicrotingCustomActions
                 // uninstall service
                 var regkey = Registry.LocalMachine.OpenSubKey($@"SYSTEM\CurrentControlSet\services\{serviceName}");
 
-                var servicePath = regkey.GetValue("ImagePath").ToString(); 
+                var servicePath = regkey.GetValue("ImagePath").ToString();
 
                 var netVersion = Environment.Version.ToString(3);
                 var instalUtilPath = "C:\\Windows\\Microsoft.NET\\Framework\\v" + netVersion + "\\InstallUtil.exe";
@@ -225,8 +225,8 @@ namespace MicrotingCustomActions
                 var dir = Path.GetDirectoryName(servicePath.Replace("\"", ""));
 
                 var keepSettings = session.CustomActionData["KEEPSETTINGS"] == "1";
-                var keepFolders = keepSettings 
-                    ? session.CustomActionData["KEEPFOLDERS"].Split(',') 
+                var keepFolders = keepSettings
+                    ? session.CustomActionData["KEEPFOLDERS"].Split(',')
                     : new string[0];
                 var keepFiles = keepSettings
                     ? session.CustomActionData["KEEPFILES"].Split(',')
@@ -278,14 +278,14 @@ namespace MicrotingCustomActions
                     return ActionResult.Success;
 
                 var serviceName = session.CustomActionData["SERVICENAME"];
-                
+
                 // start service
                 var service = new ServiceController(serviceName);
                 if (service.Status != ServiceControllerStatus.Stopped)
                     service.Stop();
 
                 service.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(30));
-                
+
                 //fix sometimes service is not stoping, this is workaround
                 RunProcess(@"sc", $"stop {serviceName}");
 
@@ -333,7 +333,7 @@ namespace MicrotingCustomActions
             {
                 var installFolder = session["INSTALLFOLDER"];
                 var configFolders = session["KEEPFOLDERS"].Split(',');
-                var configFiles = session["KEEPFILES"]== "{}" ? new string[0] : session["KEEPFILES"].Split(',');
+                var configFiles = session["KEEPFILES"] == "{}" ? new string[0] : session["KEEPFILES"].Split(',');
 
                 if (!Directory.Exists(installFolder))
                 {
@@ -349,7 +349,7 @@ namespace MicrotingCustomActions
 
                 var configFoldersFound = SaveConfigFolders(configFolders, tmp, installFolder);
                 var configFilesFound = SaveConfigFiles(configFiles, tmp, installFolder);
-                
+
                 if (configFoldersFound || configFilesFound)
                 {
                     session["CONFIGURATIONEXISTS"] = "1";

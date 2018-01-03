@@ -20,7 +20,7 @@ namespace MicrotingCustomActions.Helpers
 {
     public class CertHelper
     {
-        public static  void GenerateSelfSignedCert(string serviceName, string certName, string privateKeyName, string location)
+        public static void GenerateSelfSignedCert(string serviceName, string certName, string privateKeyName, string location)
         {
             AsymmetricCipherKeyPair subjectKeyPair;
             var computer = Environment.MachineName;
