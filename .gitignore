@@ -322,3 +322,5 @@ paket-files/
 ServiceTestConsole/obj/
 ServiceTestConsole/bin/
 Installer/BuildedCustomActions/*
+MicrotingServiceInstaller/JasperExporter.jar
+MicrotingService/JasperExporter.jar
