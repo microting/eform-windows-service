@@ -1,17 +1,21 @@
-[xml]$xml = (Get-Content "./Product1.wxs" | ConvertTo-Xml)
+[cmdletbinding()]
+Param(
+  [ValidateScript({Test-Path $_})]
+  [ValidateNotNullOrEmpty()] 
+  [Parameter(Mandatory=$True)]
+  [string]$filePath,
+  
+  
+  [Parameter(Mandatory=$True)]
+  [ValidateNotNullOrEmpty()] 
+  [string]$version
+)
 
-Write-Host $xml.Wix.Product.Version
-#Write-Host ("$version is {0}" -f $xdoc.Wix.Product.Version )
-#$productNode = $xdoc.SelectSingleNode("//Product")
+[xml]$xml = Get-Content $filePath
 
-#Write-Host $productNode
-#$productNode.UpdateAttribute("Version", "1.2.3");
+Write-Verbose ("Updating product verion to {0}" -f $version)
 
-#Write-Host $node
-#Write-Host 'Saving'
-#$xdoc.Save(“.\Product1.wxs”)
+$xml.Wix.Product.Version = $version
 
-#$xdoc = [xml] (Get-Content “.\Product1.wxs”)
-
-#Write-Host ("$version is {0}" -f $xdoc.Wix.Product.Version )
-Exit-PSSession
+Write-Verbose ("Saving to file {0}" -f $filePath)
+$xml.Save($filePath)
