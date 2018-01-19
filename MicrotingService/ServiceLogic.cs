@@ -31,6 +31,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security;
+using System.Threading;
 
 namespace MicrotingService
 {
@@ -121,6 +122,7 @@ namespace MicrotingService
                         sdkCore.HandleEventException -= CoreEventException;
                         sdkCore.HandleCaseRetrived += _caseRetrived;
                         sdkCore.HandleCaseCompleted += _caseCompleted;
+                        sdkCore.HandleNotificationNotFound += _caseCompleted;
                         LogEvent("Core exception events disconnected (if needed)");
                     }
                     catch { }
@@ -322,6 +324,18 @@ namespace MicrotingService
                 LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
             }
 
+
+
+        }
+        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
+        #endregion
+
+        #region _caseNotFound
+        private void _caseNoFound(object sender, EventArgs args)
+        {
+
+            Note_Dto trigger = (Note_Dto)sender;
+
             //string nav_id = trigger.Custom;
 
             //string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
@@ -330,9 +344,7 @@ namespace MicrotingService
 
             //File.Move(oldPath, newPath);
             //LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
-
         }
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         #endregion
 
         protected String GetServiceName()
