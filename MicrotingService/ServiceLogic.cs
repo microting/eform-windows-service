@@ -335,15 +335,12 @@ namespace MicrotingService
         {
 
             Note_Dto trigger = (Note_Dto)sender;
-
-            //string nav_id = trigger.Custom;
-
-            //string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
-            //string newPath = inboundPath.Replace("inbound", "outbound") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
-            //LogEvent(String.Format("_caseCompleted called oldPath is : " + oldPath));
-
-            //File.Move(oldPath, newPath);
-            //LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
+            if (File.Exists(GetServiceLocation() + "input\\inboundPath.txt"))
+            {
+                string newPath = inboundPath.Replace("inbound", "outbound");
+                newPath += "\\" + trigger.MicrotingUId + "_" + trigger.Activity + ".txt";
+                File.WriteAllText(newPath, trigger.Activity);
+            }
         }
         #endregion
 
