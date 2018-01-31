@@ -324,3 +324,5 @@ ServiceTestConsole/bin/
 Installer/BuildedCustomActions/*
 MicrotingServiceInstaller/JasperExporter.jar
 MicrotingService/JasperExporter.jar
+MicrotingServiceInstaller/content/JasperExporter.jar
+MicrotingService/content/JasperExporter.jar
