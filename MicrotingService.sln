@@ -24,6 +24,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installation", "Installation", "{B3A6E173-FDEE-42F1-8024-19A8B179F5F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerRunner", "Installer\InstallerRunner\InstallerRunner.csproj", "{B006287A-FB9C-484F-B487-C62D2712AECD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B008808B-2C99-45EA-85E4-65AA45C0C46D} = {B008808B-2C99-45EA-85E4-65AA45C0C46D}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{92F37F91-E562-4F63-9FB8-5059E98FE324}"
 	ProjectSection(SolutionItems) = preProject
