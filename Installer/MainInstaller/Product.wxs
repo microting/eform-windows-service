@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define MicrotingService_TargetDir=$(var.SolutionDir)MicrotingService\bin\x64\$(var.Configuration)\?>
+  <?define ProductName="Microting Windows Service" ?>
+
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.1.0" Manufacturer="Microting A/S" >
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" AdminImage="yes" Platform="x64"/>
+
+    <UIRef Id="WixUI_InstallDirModified"/> 
+
+    <MediaTemplate EmbedCab="yes"/>
+
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\MicrotingEULA.rtf"/>
+
+    <Feature Id="ProductFeature" Title="Microting Service" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>  
+ 
+  <Fragment>   
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)"/>   
+      </Directory> 
+    </Directory>    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>   
+    <Property Id="MSIUSEREALADMINDETECTION" Value="1" />  
+    <Property Id="MSIINSTALLPERUSER" Value="{}" />
+   
+    <Property Id="INSTMODE" Value="{}" Secure="yes" />
+    <Property Id="SERVICENAME" Value="{}" Secure="yes"/> 
+    <Property Id="INSTALLFOLDER" Value="C:\" Secure="yes"/>
+    <Property Id="SOMETEST" Value="C:\" Secure="yes"/> 
+    <Property Id="CONNECTIONSTRING" Value="{}" Secure="yes"/>
+    <Property Id="OUTLOOKCONNECTIONSTRING" Value="{}" Secure="yes"/>
+    <Property Id="OUTLOOKCONNECTIONSTRINGENABLED" Value="{}" Secure="yes"/>
+    <Property Id="KEEPFOLDERS" Value="input,log,cert" Secure="yes"/>
+    <Property Id="KEEPFILES" Value="{}" Secure="yes"/>
+    <Property Id="KEEPSETTINGS" Value="1" Secure="yes"/>
+    <Property Id="USEEXISTINGCONFIGURATION" Value="{}" Secure="yes"/>
+    <Property Id="CONFIGURATIONEXISTS" Value="{}" Secure="yes"/>
+    <Property Id="APPID" Value="{}" Secure="yes"/>
+    <Property Id="DIRID" Value="{}" Secure="yes"/>
+    <!--<Property Id="USER" Value="{}" Secure="yes"/>
+    <Property Id="PASSWORD" Value="{}" Secure="yes"/>-->
+
+    <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="WelcomeBanner.bmp" />
+    
+    <SetProperty Id="ARPNOMODIFY" Value="1" After="InstallValidate" Sequence="execute"/>
+        
+    <InstallExecuteSequence>  
+      <Custom Action="SetProductName" After="InstallInitialize"/> 
+      <Custom Action="SetInstalValues" After="InstallInitialize"/>  
+      <Custom Action="SetRemoveValues" After="InstallInitialize" />     
+      <Custom Action="SetUpdateStopServiceValues" After="InstallInitialize" />    
+      <Custom Action="SetUpdateServiceValues" After="InstallInitialize" /> 
+
+      <Custom Action="Install" Before="InstallFinalize">1</Custom> 
+      <Custom Action="StopBeforeUpadateService" After="SetUpdateStopServiceValues">1</Custom> 
+      <Custom Action="UpdateService" Before='InstallFinalize'>1</Custom> 
+      <Custom Action="RemoveService" After='SetRemoveValues'>1</Custom>   
+    </InstallExecuteSequence>  
+  </Fragment>  
+  
+  <Fragment>
+    <CustomAction Id="GetServicesList" BinaryKey="BinaryCA" DllEntry="GetServicesListCA" Execute="immediate" />
+    <CustomAction Id="TryFindConfigs" BinaryKey="BinaryCA" DllEntry="TryFindConfigs" Execute="immediate"/>
+    <CustomAction Id="FormatConnectionStrings" BinaryKey="BinaryCA" DllEntry="FormatConnectionStringsCA" Execute="immediate" />
+
+    <CustomAction Id="Install" BinaryKey="BinaryCA" DllEntry="InstalCA" Execute="deferred" Impersonate="no"/>    
+    <CustomAction Id="RemoveService" BinaryKey="BinaryCA" DllEntry="UninstallServiceCA" Execute="deferred" Impersonate="no" />
+    <CustomAction Id="StopBeforeUpadateService" BinaryKey="BinaryCA" DllEntry="StopBeforUpdateServiceCA" Execute="deferred" Impersonate="no" />
+    <CustomAction Id="UpdateService" BinaryKey="BinaryCA" DllEntry="UpdateServiceCA" Execute="deferred" Impersonate="no" />
+    
+    <Binary Id="BinaryCA" SourceFile="..\Build\MicrotingCustomActions.CA.dll"/>  
+     
+    <!--Runs before installation started--> 
+    <CustomAction Id="SetInstalValues" Property="Install" Value="INSTMODE=[INSTMODE];INSTDIR=[INSTALLFOLDER];CS=[CONNECTIONSTRING];OUTLOOKCSENABLED=[OUTLOOKCONNECTIONSTRINGENABLED];OUTLOOKCS=[OUTLOOKCONNECTIONSTRING];SERVICENAME=[SERVICENAME];USECONFIG=[USEEXISTINGCONFIGURATION];CONFIGEXISTS=[CONFIGURATIONEXISTS];KEEPFOLDERS=[KEEPFOLDERS];KEEPFILES=[KEEPFILES];APPID=[APPID];DIRID=[DIRID]" />
+    <CustomAction Id="SetRemoveValues" Property="RemoveService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME];KEEPFOLDERS=[KEEPFOLDERS];KEEPSETTINGS=[KEEPSETTINGS];KEEPFILES=[KEEPFILES]" />
+    <CustomAction Id="SetUpdateStopServiceValues" Property="StopBeforeUpadateService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
+    <CustomAction Id="SetUpdateServiceValues" Property="UpdateService" Value="INSTMODE=[INSTMODE];SERVICENAME=[SERVICENAME]" />
+    <CustomAction Id="SetProductName" Property="ProductName" Value="[ProductName] - [SERVICENAME]" />
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="Microting.eForm.dll" Guid="*">
+        <File Id="Microting.eForm.dll" Name="Microting.eForm.dll" Source="$(var.MicrotingService_TargetDir)Microting.eForm.dll" />
+      </Component>
+      <Component Id="MicrotingService.exe" Guid="*">
+        <File Id="MicrotingService.exe" Name="MicrotingService.exe" Source="$(var.MicrotingService_TargetDir)MicrotingService.exe" />
+      </Component>
+      <Component Id="MicrotingService.exe.config" Guid="*">
+        <File Id="MicrotingService.exe.config" Name="MicrotingService.exe.config" Source="$(var.MicrotingService_TargetDir)MicrotingService.exe.config" />
+      </Component>
+      <Component Id="AWSSDK.Core.dll" Guid="*">
+        <File Id="AWSSDK.Core.dll" Name="AWSSDK.Core.dll" Source="$(var.MicrotingService_TargetDir)AWSSDK.Core.dll" />
+      </Component>
+      <Component Id="AWSSDK.SQS.dll" Guid="*">
+        <File Id="AWSSDK.SQS.dll" Name="AWSSDK.SQS.dll" Source="$(var.MicrotingService_TargetDir)AWSSDK.SQS.dll" />
+      </Component>
+
+      <Component Id="EntityFramework.dll" Guid="*">
+        <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.MicrotingService_TargetDir)EntityFramework.dll" />
+      </Component>
+      <Component Id="EntityFramework.SqlServer.dll" Guid="*">
+        <File Id="EntityFramework.SqlServer.dll" Name="EntityFramework.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)EntityFramework.SqlServer.dll" />
+      </Component>
+      <Component Id="MySql.Data.dll" Guid="*">
+        <File Id="MySql.Data.dll" Name="MySql.Data.dll" Source="$(var.MicrotingService_TargetDir)MySql.Data.dll" />
+      </Component>
+      <Component Id="MySql.Data.Entity.EF6.dll" Guid="*">
+        <File Id="MySql.Data.Entity.EF6.dll" Name="MySql.Data.Entity.EF6.dll" Source="$(var.MicrotingService_TargetDir)MySql.Data.Entity.EF6.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="*">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.MicrotingService_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="Microting.OutlookAddon.dll" Guid="*">
+        <File Id="Microting.OutlookAddon.dll" Name="Microting.OutlookAddon.dll" Source="$(var.MicrotingService_TargetDir)Microting.OutlookAddon.dll" />
+      </Component>
+      <Component Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Guid="*">
+        <File Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Source="$(var.MicrotingService_TargetDir)Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
+      </Component>
+      <Component Id="Castle.Core.dll" Guid="*">
+        <File Id="Castle.Core.dll" Name="Castle.Core.dll" Source="$(var.MicrotingService_TargetDir)Castle.Core.dll" />
+      </Component>
+      <Component Id="Castle.Windsor.dll" Guid="*">
+        <File Id="Castle.Windsor.dll" Name="Castle.Windsor.dll" Source="$(var.MicrotingService_TargetDir)Castle.Windsor.dll" />
+      </Component>
+      <Component Id="Rebus.CastleWindsor.dll" Guid="*">
+        <File Id="Rebus.CastleWindsor.dll" Name="Rebus.CastleWindsor.dll" Source="$(var.MicrotingService_TargetDir)Rebus.CastleWindsor.dll" />
+      </Component>
+      <Component Id="Rebus.dll" Guid="*">
+        <File Id="Rebus.dll" Name="Rebus.dll" Source="$(var.MicrotingService_TargetDir)Rebus.dll" />
+      </Component>
+      <Component Id="Rebus.SqlServer.dll" Guid="*">
+        <File Id="Rebus.SqlServer.dll" Name="Rebus.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)Rebus.SqlServer.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
