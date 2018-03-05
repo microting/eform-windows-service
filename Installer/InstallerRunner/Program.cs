@@ -22,7 +22,7 @@ namespace InstallerRunner
                         true);
 
                 var products = install.GetSubKeyNames().Where(t =>
-                    install.OpenSubKey(t).GetValue("ProductName").ToString().Contains("Microting Windows Service"));
+                install.OpenSubKey(t).GetValue("ProductName")?.ToString().Contains("Microting Windows Service") == true);
 
                 if (products != null)
                     foreach (var product in products)
