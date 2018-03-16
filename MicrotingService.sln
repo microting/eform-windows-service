@@ -18,10 +18,13 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Main
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllowMultipleVersions", "Installer\AllowMultipleVersions\AllowMultipleVersions.csproj", "{2B167169-F122-4F1F-9881-0DC8C07585B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E5A08D8D-DB04-4775-A7BF-A8144E9DC397} = {E5A08D8D-DB04-4775-A7BF-A8144E9DC397}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrotingCustomActions", "Installer\MicrotingCustomActions\MicrotingCustomActions.csproj", "{A9B8A71A-21CD-4499-A058-839B2754E6EF}"
 	ProjectSection(ProjectDependencies) = postProject
-		{E5A08D8D-DB04-4775-A7BF-A8144E9DC397} = {E5A08D8D-DB04-4775-A7BF-A8144E9DC397}
+		{2B167169-F122-4F1F-9881-0DC8C07585B8} = {2B167169-F122-4F1F-9881-0DC8C07585B8}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installation", "Installation", "{B3A6E173-FDEE-42F1-8024-19A8B179F5F3}"
@@ -29,7 +32,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerRunner", "Installer\InstallerRunner\InstallerRunner.csproj", "{B006287A-FB9C-484F-B487-C62D2712AECD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A9B8A71A-21CD-4499-A058-839B2754E6EF} = {A9B8A71A-21CD-4499-A058-839B2754E6EF}
-		{2B167169-F122-4F1F-9881-0DC8C07585B8} = {2B167169-F122-4F1F-9881-0DC8C07585B8}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{92F37F91-E562-4F63-9FB8-5059E98FE324}"
