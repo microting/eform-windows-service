@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrotingService", "MicrotingService\MicrotingService.csproj", "{49103384-B736-4A6C-921D-508FF8DEC705}"
 EndProject
@@ -13,9 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrotingServiceInstaller",
 	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\MainInstaller\Installer.wixproj", "{B008808B-2C99-45EA-85E4-65AA45C0C46D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B006287A-FB9C-484F-B487-C62D2712AECD} = {B006287A-FB9C-484F-B487-C62D2712AECD}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllowMultipleVersions", "Installer\AllowMultipleVersions\AllowMultipleVersions.csproj", "{2B167169-F122-4F1F-9881-0DC8C07585B8}"
 	ProjectSection(ProjectDependencies) = postProject
