@@ -15,7 +15,7 @@ namespace ServiceTestConsole
             string fakedServiceName = "MicrotingOdense";
 
             ServiceLogic serveiceLogic = new ServiceLogic();
-            serveiceLogic.OverrideServiceLocation("c:\\microtingservice\\" + fakedServiceName + "\\");
+            //serveiceLogic.OverrideServiceLocation("c:\\microtingservice\\" + fakedServiceName + "\\");
 
             serveiceLogic.Start();
             Console.WriteLine("Press any key to close");
