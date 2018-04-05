@@ -172,6 +172,7 @@ namespace MicrotingService
             catch (Exception ex)
             {
                 LogException(t.PrintException("Fatal Exception", ex));
+				throw ex;
             }
         }
 
@@ -254,9 +255,11 @@ namespace MicrotingService
         private void _caseRetrived(object sender, EventArgs args)
         {
 
-            //LogEvent(String.Format("_caseCompleted called"));
-            //LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
-            Case_Dto trigger = (Case_Dto)sender;
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine($"_caseRetrived called ");
+			//LogEvent(String.Format("_caseCompleted called"));
+			//LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
+			Case_Dto trigger = (Case_Dto)sender;
             int siteId = trigger.SiteUId;
             string caseType = trigger.CaseType;
             string caseUid = trigger.CaseUId;
@@ -299,6 +302,8 @@ namespace MicrotingService
         // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         private void _caseCompleted(object sender, EventArgs args)
         {
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine($"_caseCompleted called ");
             //LogEvent(String.Format("_caseCompleted called"));
             //LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
             Case_Dto trigger = (Case_Dto)sender;
@@ -320,8 +325,10 @@ namespace MicrotingService
                 outLook.MarkAppointmentCompleted(CaseId);
             }
             catch (Exception ex)
-            {
-                LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine($"_caseCompleted sufferend an exception : {ex.Message} ");
+				LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
             }
 
 
