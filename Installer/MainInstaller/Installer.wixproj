@@ -8,7 +8,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>MicrotingServiceInstaller</OutputName>
     <OutputType>Package</OutputType>
-	<OutputPath>..\InstallerRunner\Resources\</OutputPath>
+	<WixToolPath>$(ProjectDir)..\wix\3.11\</WixToolPath>
+	<WixTargetsPath>$(WixToolPath)\wix.targets</WixTargetsPath>
+	<WixTasksPath>wixtasks.dll</WixTasksPath>
+	<OutputPath>..\InstallerRunner\Resources\</OutputPath> 
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>..\InstallerRunner\Resources\</OutputPath>
@@ -67,8 +70,7 @@
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>

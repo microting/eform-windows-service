@@ -7,9 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A9B8A71A-21CD-4499-A058-839B2754E6EF}</ProjectGuid>
     <OutputType>Library</OutputType>
-	<WixToolPath>$(ProjectDir)..\wix\3.11\sdk</WixToolPath>
-    <WixCATargetsPath>$(WixToolPath)\sdk\wix.ca.targets</WixCATargetsPath>
-	<WixTasksPath>$(WixToolPath)\WixTasks.dll</WixTasksPath>
+	<WixToolPath>$(ProjectDir)..\wix\3.11\sdk\</WixToolPath>
+    <WixCATargetsPath>$(WixToolPath)wix.ca.targets</WixCATargetsPath>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MicrotingCustomActions</RootNamespace>
     <AssemblyName>MicrotingCustomActions</AssemblyName>
