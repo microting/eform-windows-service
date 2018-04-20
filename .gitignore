@@ -84,8 +84,6 @@ packages/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
-x86/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -327,3 +325,5 @@ MicrotingService/JasperExporter.jar
 MicrotingServiceInstaller/content/JasperExporter.jar
 MicrotingService/content/JasperExporter.jar
 Installer/InstallerRunner/Resources/MicrotingServiceInstaller.msi
+Installer/Installer/BuildedCustomActions/
+*.wixpdb
