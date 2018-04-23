@@ -7,9 +7,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A9B8A71A-21CD-4499-A058-839B2754E6EF}</ProjectGuid>
     <OutputType>Library</OutputType>
-	<!--<WixToolPath>$(ProjectDir)..\wix\3.11\sdk\</WixToolPath>
+    <!--<WixToolPath>$(ProjectDir)..\wix\3.11\sdk\</WixToolPath>
     <WixCATargetsPath>$(WixToolPath)wix.ca.targets</WixCATargetsPath>-->
-	<WixTasksPath Condition=" '$(WixTasksPath)' == '' ">WixTasks.dll</WixTasksPath>
+    <WixTasksPath Condition=" '$(WixTasksPath)' == '' ">WixTasks.dll</WixTasksPath>
     <WixCATargetsPath Condition=" '$(WixCATargetsPath)' == '' ">..\wix\3.11\sdk\wix.ca.targets</WixCATargetsPath>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MicrotingCustomActions</RootNamespace>
@@ -56,8 +56,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
