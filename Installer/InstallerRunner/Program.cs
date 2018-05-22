@@ -38,7 +38,8 @@ namespace InstallerRunner
 
                 string path = Path.Combine(tmpDir, "Microting Windows Service.msi");
                 File.WriteAllBytes(path, Resource.MicrotingServiceInstaller);
-                Process.Start(path);
+
+                Process.Start("msiexec", $"/i \"{path}\" /L*V \"{ Path.Combine(Environment.CurrentDirectory, "logs.log") }");
             }
             catch (SecurityException e)
             {
