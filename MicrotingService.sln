@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrotingService", "MicrotingService\MicrotingService.csproj", "{49103384-B736-4A6C-921D-508FF8DEC705}"
 EndProject
@@ -92,7 +92,7 @@ Global
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Debug|x64.ActiveCfg = Debug|x64
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Debug|x64.Build.0 = Debug|x64
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Debug|x86.ActiveCfg = Debug|x64
-		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Release|Any CPU.ActiveCfg = Release|x64
+		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Release|Any CPU.ActiveCfg = Release|x86
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Release|x64.ActiveCfg = Release|x64
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Release|x64.Build.0 = Release|x64
 		{B008808B-2C99-45EA-85E4-65AA45C0C46D}.Release|x86.ActiveCfg = Release|x64
