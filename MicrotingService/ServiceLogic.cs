@@ -28,10 +28,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security;
-using System.Threading;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition;
+using System.Reflection;
+using Microting.WindowsService.BasePn;
 
 namespace MicrotingService
 {
@@ -39,19 +40,15 @@ namespace MicrotingService
     {
         #region var
         eFormCore.Core sdkCore;
-        OutlookCore.Core outLook;
+        //OutlookCore.Core outLook;
         Tools t = new Tools();
         string serviceLocation;
-        private FileSystemWatcher _fileWatcher;
-        private List<string> fileNames;
-        private string inboundPath;
-        string sSource;
-        string sLog;
-        string sEvent;
+        private string sSource;
+        private string sLog;
+        private CompositionContainer _container;
 
-        // DEPRECATED REMOVED IN A NEW VERSION
-        bool fileHandlingEnabled = false;
-        // DEPRECATED REMOVED IN A NEW VERSION
+        [ImportMany]
+        IEnumerable<Lazy<ISdkEventHandler>> eventHandlers;
         #endregion
 
         //con
@@ -60,7 +57,6 @@ namespace MicrotingService
 
             sSource = "MicrotingService";
             sLog = "Application";
-            bool sourceExists;
             try
             {
                 EventLog.CreateEventSource(sSource, "Application");
@@ -79,10 +75,7 @@ namespace MicrotingService
                 {
                     LogEvent(e.InnerException.Message);
                 }
-                catch
-                {
-
-                }
+                catch { }
 
             }
             try
@@ -91,7 +84,46 @@ namespace MicrotingService
                 {
                     serviceLocation = "";
                     sdkCore = new eFormCore.Core();
-                    outLook = new OutlookCore.Core();
+                    //outLook = new OutlookCore.Core();
+
+                    //An aggregate catalog that combines multiple catalogs
+                    var catalog = new AggregateCatalog();
+                    //Adds all the parts found in the same assembly as the Program class
+                    //catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));
+
+                    //var files = Directory.GetFiles(@"Extensions", "*.dll", SearchOption.AllDirectories);
+
+                    //foreach (var dllFile in files)
+                    //{
+                    try
+                    {
+                        //var assambly = Assembly.LoadFile(GetServiceLocation() + dllFile);
+                        //var assamblyCatalog = new AssemblyCatalog(assambly);
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        foreach (string dir in Directory.GetDirectories(GetServiceLocation() + @"Extensions"))
+                        {
+                            Console.WriteLine("Loading Plugin : " + dir);
+                            catalog.Catalogs.Add(new DirectoryCatalog(dir));
+
+                        }
+                        //catalog.Catalogs.Add(assamblyCatalog);
+                    } catch (Exception e) { }
+                    //}
+                    //catalog.Catalogs.Add(new DirectoryCatalog(@"Extensions"));
+
+                    //Create the CompositionContainer with the parts in the catalog
+                    _container = new CompositionContainer(catalog);
+
+                    //Fill the imports of this object
+                    try
+                    {
+                        this._container.ComposeParts(this);
+                    }
+                    catch (CompositionException compositionException)
+                    {
+                        Console.WriteLine(compositionException.ToString());
+                    }
                 }
                 LogEvent("Service completed");
             }
@@ -104,6 +136,27 @@ namespace MicrotingService
         #region public state
         public void Start()
         {
+
+            string connectionString = File.ReadAllText(GetServiceLocation() + "input\\sql_connection_sdkCore.txt").Trim();
+            Start(connectionString);
+        }
+
+        public void Start(string sdkSqlCoreStr)
+        {
+            try
+            {
+
+                foreach (Lazy<ISdkEventHandler> i in eventHandlers)
+                {
+                    i.Value.Start(sdkSqlCoreStr, GetServiceLocation());
+                    //if (i.Metadata.Symbol.Equals(operation)) return i.Value.Operate(left, right).ToString();
+                }
+            } catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Start got exception : " + e.Message);
+            }
+
             try
             {
                 LogEvent("Service Start called");
@@ -131,41 +184,22 @@ namespace MicrotingService
                     LogEvent("Core exception events connected");
                     #endregion
 
-                    string sdkSqlCoreStr = File.ReadAllText(GetServiceLocation() + "input\\sql_connection_sdkCore.txt").Trim();
                     LogEvent("sdkSqlCoreStr, " + sdkSqlCoreStr);
 
                     sdkCore.Start(sdkSqlCoreStr);
                     LogEvent("SDK Core started");
                     #endregion
 
-                    #region start Outlook
-                    if (File.Exists(GetServiceLocation() + "input\\sql_connection_outLook.txt"))
-                    {
-                        string outlookSqlStr = File.ReadAllText(GetServiceLocation() + "input\\sql_connection_outLook.txt").Trim();
-                        LogEvent("outlookSqlStr, " + outlookSqlStr);
+                    #region start Plugins
+                    //if (File.Exists(GetServiceLocation() + "input\\sql_connection_outLook.txt"))
+                    //{
+                    //    string outlookSqlStr = File.ReadAllText(GetServiceLocation() + "input\\sql_connection_outLook.txt").Trim();
+                    //    LogEvent("outlookSqlStr, " + outlookSqlStr);
 
-                        outLook.Start(outlookSqlStr, GetServiceLocation());
-                        LogEvent("Outlook started");
-                    }
-                    #endregion
-
-                    #region start FileWatcher 
-                    // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
-                    if (File.Exists(GetServiceLocation() + "input\\inboundPath.txt"))
-                    {
-                        inboundPath = File.ReadAllText(GetServiceLocation() + "input\\inboundPath.txt").Trim();
-                        _fileWatcher = new FileSystemWatcher(inboundPath);
-
-                        _fileWatcher.Created += _fileWatcher_Created;
-
-                        _fileWatcher.EnableRaisingEvents = true;
-
-                        fileNames = new List<string>();
-                        fileHandlingEnabled = true;
-                        LogEvent("Filewatecher started");
-                    }
-                    // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
-                    #endregion
+                    //    outLook.Start(outlookSqlStr, GetServiceLocation());
+                    //    LogEvent("Outlook started");
+                    //}
+                    #endregion                    
                 }
                 LogEvent("Service Start completed");
             }
@@ -182,8 +216,8 @@ namespace MicrotingService
             {
                 LogEvent("Service Close called");
                 {
-                    outLook.Close();
-                    LogEvent("Outlook closed");
+                    //outLook.Close();
+                    //LogEvent("Outlook closed");
 
                     sdkCore.Close();
                     LogEvent("SDK Core closed");
@@ -216,40 +250,6 @@ namespace MicrotingService
             return serviceLocation;
         }
 
-        #region _fileWather_Created
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
-        private void _fileWatcher_Created(object sender, FileSystemEventArgs e)
-        {
-            if (!fileNames.Contains(e.Name))
-            {
-                LogEvent("_fileWatcher_Created called for file :" + e.Name);
-                fileNames.Add(e.Name);
-                char[] delimiter = { '_' };
-                int siteId = int.Parse(e.Name.Split(delimiter)[0]);
-                string navId = e.Name.Split(delimiter)[1].Replace(".xml", "");
-                string rawXml = "";
-                foreach (string line in File.ReadLines(e.FullPath))
-                {
-                    rawXml += line;
-                }
-                eFormData.MainElement mainElement = sdkCore.TemplateFromXml(rawXml);
-                int template_id = sdkCore.TemplateCreate(mainElement);
-
-                // We read the MainElement from db, since we need our own ids.
-                mainElement = sdkCore.TemplateRead(template_id);
-
-                List<int> siteIds = new List<int>();
-                siteIds.Add(siteId);
-                List<string> mtUid = sdkCore.CaseCreate(mainElement, "", siteIds, navId);
-                string newEnding = "_" + mtUid.First().ToString() + ".xml";
-                string newFileName = e.FullPath.Replace("inbound", "parsed").Replace(".xml", newEnding);
-                File.Move(e.FullPath, newFileName);
-                LogEvent(String.Format("File created: Path {0}, Name: {1}", e.FullPath, e.Name));
-            }
-        }
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
-        #endregion
-
         #region _caseRetrived
         // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         private void _caseRetrived(object sender, EventArgs args)
@@ -274,14 +274,14 @@ namespace MicrotingService
             LogEvent("_caseRetrived CaseId is :'" + CaseId + "'");
 
 
-            try
-            {
-                outLook.MarkAppointmentRetrived(CaseId);
-            }
-            catch (Exception ex)
-            {
-                LogException("outLook.MarkAppointmentRetrived threw the exception: " + ex.Message);
-            }
+            //try
+            //{
+            //    outLook.MarkAppointmentRetrived(CaseId);
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogException("outLook.MarkAppointmentRetrived threw the exception: " + ex.Message);
+            //}
 
 
             //string nav_id = trigger.Custom;
@@ -320,16 +320,16 @@ namespace MicrotingService
             LogEvent("_caseCompleted checkUId is :'" + checkUId + "'");
             LogEvent("_caseCompleted CaseId is :'" + CaseId + "'");
 
-            try
-            {
-                outLook.MarkAppointmentCompleted(CaseId);
-            }
-            catch (Exception ex)
-			{
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine($"_caseCompleted sufferend an exception : {ex.Message} ");
-				LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
-            }
+   //         try
+   //         {
+   //             outLook.MarkAppointmentCompleted(CaseId);
+   //         }
+   //         catch (Exception ex)
+			//{
+			//	Console.ForegroundColor = ConsoleColor.Red;
+			//	Console.WriteLine($"_caseCompleted sufferend an exception : {ex.Message} ");
+			//	LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
+   //         }
 
 
 
@@ -341,13 +341,7 @@ namespace MicrotingService
         private void _caseNoFound(object sender, EventArgs args)
         {
 
-            Note_Dto trigger = (Note_Dto)sender;
-            if (File.Exists(GetServiceLocation() + "input\\inboundPath.txt"))
-            {
-                string newPath = inboundPath.Replace("inbound", "outbound");
-                newPath += "\\" + trigger.MicrotingUId + "_" + trigger.Activity + ".txt";
-                File.WriteAllText(newPath, trigger.Activity);
-            }
+            Note_Dto trigger = (Note_Dto)sender;            
         }
         #endregion
 
