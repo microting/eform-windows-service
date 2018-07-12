@@ -148,8 +148,10 @@ namespace MicrotingService
 
                 foreach (Lazy<ISdkEventHandler> i in eventHandlers)
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Trying to start plugin : " + i.Value.GetType().ToString());
                     i.Value.Start(sdkSqlCoreStr, GetServiceLocation());
-                    //if (i.Metadata.Symbol.Equals(operation)) return i.Value.Operate(left, right).ToString();
+                    Console.WriteLine(i.Value.GetType().ToString() + " started successfully!");
                 }
             } catch (Exception e)
             {
@@ -216,9 +218,22 @@ namespace MicrotingService
             {
                 LogEvent("Service Close called");
                 {
-                    //outLook.Close();
-                    //LogEvent("Outlook closed");
+                    try
+                    {
 
+                        foreach (Lazy<ISdkEventHandler> i in eventHandlers)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Trying to stop plugin : " + i.Value.GetType().ToString());
+                            i.Value.Stop(false);
+                            Console.WriteLine(i.Value.GetType().ToString() + " stopped successfully!");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Stop got exception : " + e.Message);
+                    }
                     sdkCore.Close();
                     LogEvent("SDK Core closed");
                 }
@@ -251,90 +266,79 @@ namespace MicrotingService
         }
 
         #region _caseRetrived
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         private void _caseRetrived(object sender, EventArgs args)
         {
 
-			Console.ForegroundColor = ConsoleColor.Yellow;
-			Console.WriteLine($"_caseRetrived called ");
-			//LogEvent(String.Format("_caseCompleted called"));
-			//LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
-			Case_Dto trigger = (Case_Dto)sender;
-            int siteId = trigger.SiteUId;
-            string caseType = trigger.CaseType;
-            string caseUid = trigger.CaseUId;
-            string mUId = trigger.MicrotingUId;
-            string checkUId = trigger.CheckUId;
-            string CaseId = trigger.CaseId.ToString();
-            LogEvent("_caseRetrived siteId is :'" + siteId + "'");
-            LogEvent("_caseRetrived caseType is :'" + caseType + "'");
-            LogEvent("_caseRetrived caseUid is :'" + caseUid + "'");
-            LogEvent("_caseRetrived mUId is :'" + mUId + "'");
-            LogEvent("_caseRetrived checkUId is :'" + checkUId + "'");
-            LogEvent("_caseRetrived CaseId is :'" + CaseId + "'");
+			//Console.ForegroundColor = ConsoleColor.Yellow;
+			//Console.WriteLine($"_caseRetrived called ");
+			//Case_Dto trigger = (Case_Dto)sender;
+   //         int siteId = trigger.SiteUId;
+   //         string caseType = trigger.CaseType;
+   //         string caseUid = trigger.CaseUId;
+   //         string mUId = trigger.MicrotingUId;
+   //         string checkUId = trigger.CheckUId;
+   //         string CaseId = trigger.CaseId.ToString();
+   //         LogEvent("_caseRetrived siteId is :'" + siteId + "'");
+   //         LogEvent("_caseRetrived caseType is :'" + caseType + "'");
+   //         LogEvent("_caseRetrived caseUid is :'" + caseUid + "'");
+   //         LogEvent("_caseRetrived mUId is :'" + mUId + "'");
+   //         LogEvent("_caseRetrived checkUId is :'" + checkUId + "'");
+   //         LogEvent("_caseRetrived CaseId is :'" + CaseId + "'");
 
+            try
+            {
 
-            //try
-            //{
-            //    outLook.MarkAppointmentRetrived(CaseId);
-            //}
-            //catch (Exception ex)
-            //{
-            //    LogException("outLook.MarkAppointmentRetrived threw the exception: " + ex.Message);
-            //}
-
-
-            //string nav_id = trigger.Custom;
-
-            //string oldPath = inboundPath.Replace("inbound", "parsed") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
-            //string newPath = inboundPath.Replace("inbound", "outbound") + "\\" + siteId.ToString() + "_" + nav_id + "_" + mUId + ".xml";
-            //LogEvent(String.Format("_caseCompleted called oldPath is : " + oldPath));
-
-            //File.Move(oldPath, newPath);
-            //LogEvent(String.Format("_caseCompleted completed for file " + oldPath));
-
-
+                foreach (Lazy<ISdkEventHandler> i in eventHandlers)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Trying to send event caseRetrieved to plugin : " + i.Value.GetType().ToString());
+                    i.Value.eFormRetrived(sender, args);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("_caseRetrived got exception : " + e.Message);
+            }
         }
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         #endregion
 
         #region _caseCreated
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         private void _caseCompleted(object sender, EventArgs args)
         {
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine($"_caseCompleted called ");
-            //LogEvent(String.Format("_caseCompleted called"));
-            //LogEvent(String.Format("_caseCompleted called inboundPath is : " + inboundPath));
-            Case_Dto trigger = (Case_Dto)sender;
-            int siteId = trigger.SiteUId;
-            string caseType = trigger.CaseType;
-            string caseUid = trigger.CaseUId;
-            string mUId = trigger.MicrotingUId;
-            string checkUId = trigger.CheckUId;
-            string CaseId = trigger.CaseId.ToString();
-            LogEvent("_caseCompleted siteId is :'" + siteId + "'");
-            LogEvent("_caseCompleted caseType is :'" + caseType + "'");
-            LogEvent("_caseCompleted caseUid is :'" + caseUid + "'");
-            LogEvent("_caseCompleted mUId is :'" + mUId + "'");
-            LogEvent("_caseCompleted checkUId is :'" + checkUId + "'");
-            LogEvent("_caseCompleted CaseId is :'" + CaseId + "'");
+			//Console.ForegroundColor = ConsoleColor.Green;
+			//Console.WriteLine($"_caseCompleted called ");
+   //         Case_Dto trigger = (Case_Dto)sender;
+   //         int siteId = trigger.SiteUId;
+   //         string caseType = trigger.CaseType;
+   //         string caseUid = trigger.CaseUId;
+   //         string mUId = trigger.MicrotingUId;
+   //         string checkUId = trigger.CheckUId;
+   //         string CaseId = trigger.CaseId.ToString();
+   //         LogEvent("_caseCompleted siteId is :'" + siteId + "'");
+   //         LogEvent("_caseCompleted caseType is :'" + caseType + "'");
+   //         LogEvent("_caseCompleted caseUid is :'" + caseUid + "'");
+   //         LogEvent("_caseCompleted mUId is :'" + mUId + "'");
+   //         LogEvent("_caseCompleted checkUId is :'" + checkUId + "'");
+   //         LogEvent("_caseCompleted CaseId is :'" + CaseId + "'");
 
-   //         try
-   //         {
-   //             outLook.MarkAppointmentCompleted(CaseId);
-   //         }
-   //         catch (Exception ex)
-			//{
-			//	Console.ForegroundColor = ConsoleColor.Red;
-			//	Console.WriteLine($"_caseCompleted sufferend an exception : {ex.Message} ");
-			//	LogException("outLook.MarkAppointmentCompleted threw the exception: " + ex.Message);
-   //         }
+            try
+            {
 
-
+                foreach (Lazy<ISdkEventHandler> i in eventHandlers)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Trying to send event _caseCompleted to plugin : " + i.Value.GetType().ToString());
+                    i.Value.CaseCompleted(sender, args);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("_caseCompleted got exception : " + e.Message);
+            }
 
         }
-        // DEPRECATION WARNING!!! THIS WILL BE REMOVED IN A LATER VERSION
         #endregion
 
         #region _caseNotFound
