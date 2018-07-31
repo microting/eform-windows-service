@@ -116,12 +116,6 @@
       <Component Id="Newtonsoft.Json.dll" Guid="*">
         <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.MicrotingService_TargetDir)Newtonsoft.Json.dll" />
       </Component>
-      <Component Id="Microting.OutlookAddon.dll" Guid="*">
-        <File Id="Microting.OutlookAddon.dll" Name="Microting.OutlookAddon.dll" Source="$(var.MicrotingService_TargetDir)Microting.OutlookAddon.dll" />
-      </Component>
-      <Component Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Guid="*">
-        <File Id="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" Source="$(var.MicrotingService_TargetDir)Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
-      </Component>
       <Component Id="Castle.Core.dll" Guid="*">
         <File Id="Castle.Core.dll" Name="Castle.Core.dll" Source="$(var.MicrotingService_TargetDir)Castle.Core.dll" />
       </Component>
@@ -136,6 +130,9 @@
       </Component>
       <Component Id="Rebus.SqlServer.dll" Guid="*">
         <File Id="Rebus.SqlServer.dll" Name="Rebus.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)Rebus.SqlServer.dll" />
+      </Component>
+      <Component Id="Microting.WindowsService.BasePn.dll" Guid="*">
+        <File Id="Microting.WindowsService.BasePn.dll" Name="Microting.WindowsService.BasePn.dll" Source="$(var.MicrotingService_TargetDir)Microting.WindowsService.BasePn.dll" />
       </Component>
     </ComponentGroup>
   </Fragment>

@@ -74,12 +74,6 @@
     <Reference Include="EPPlus, Version=4.5.2.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.5.2.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.19.8\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform, Version=3.19.8.16603, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.19.8\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -91,9 +85,6 @@
     </Reference>
     <Reference Include="Microting.eForm, Version=2.1.298.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microting.eForm.2.1.298\lib\net45\Microting.eForm.dll</HintPath>
-    </Reference>
-    <Reference Include="Microting.OutlookAddon, Version=2.1.77.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.OutlookAddon.2.1.77\lib\net45\Microting.OutlookAddon.dll</HintPath>
     </Reference>
     <Reference Include="Microting.WindowsService.BasePn, Version=1.1.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microting.WindowsService.BasePn.1.1.9\lib\net45\Microting.WindowsService.BasePn.dll</HintPath>
@@ -170,7 +161,7 @@
     <Content Include="JasperExporter.jar" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
+    <Folder Include="Plugins\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

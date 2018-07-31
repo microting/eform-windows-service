@@ -84,34 +84,21 @@ namespace MicrotingService
                 {
                     serviceLocation = "";
                     sdkCore = new eFormCore.Core();
-                    //outLook = new OutlookCore.Core();
 
                     //An aggregate catalog that combines multiple catalogs
                     var catalog = new AggregateCatalog();
+
                     //Adds all the parts found in the same assembly as the Program class
-                    //catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));
-
-                    //var files = Directory.GetFiles(@"Extensions", "*.dll", SearchOption.AllDirectories);
-
-                    //foreach (var dllFile in files)
-                    //{
                     try
                     {
-                        //var assambly = Assembly.LoadFile(GetServiceLocation() + dllFile);
-                        //var assamblyCatalog = new AssemblyCatalog(assambly);
-
                         Console.ForegroundColor = ConsoleColor.Green;
-                        foreach (string dir in Directory.GetDirectories(GetServiceLocation() + @"Extensions"))
+                        foreach (string dir in Directory.GetDirectories(GetServiceLocation() + @"Plugins"))
                         {
                             Console.WriteLine("Loading Plugin : " + dir);
                             catalog.Catalogs.Add(new DirectoryCatalog(dir));
 
                         }
-                        //catalog.Catalogs.Add(assamblyCatalog);
                     } catch (Exception e) { }
-                    //}
-                    //catalog.Catalogs.Add(new DirectoryCatalog(@"Extensions"));
-
                     //Create the CompositionContainer with the parts in the catalog
                     _container = new CompositionContainer(catalog);
 
@@ -143,6 +130,7 @@ namespace MicrotingService
 
         public void Start(string sdkSqlCoreStr)
         {
+            #region start plugins
             try
             {
 
@@ -153,11 +141,13 @@ namespace MicrotingService
                     i.Value.Start(sdkSqlCoreStr, GetServiceLocation());
                     Console.WriteLine(i.Value.GetType().ToString() + " started successfully!");
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Start got exception : " + e.Message);
             }
+            #endregion
 
             try
             {
@@ -190,18 +180,7 @@ namespace MicrotingService
 
                     sdkCore.Start(sdkSqlCoreStr);
                     LogEvent("SDK Core started");
-                    #endregion
-
-                    #region start Plugins
-                    //if (File.Exists(GetServiceLocation() + "input\\sql_connection_outLook.txt"))
-                    //{
-                    //    string outlookSqlStr = File.ReadAllText(GetServiceLocation() + "input\\sql_connection_outLook.txt").Trim();
-                    //    LogEvent("outlookSqlStr, " + outlookSqlStr);
-
-                    //    outLook.Start(outlookSqlStr, GetServiceLocation());
-                    //    LogEvent("Outlook started");
-                    //}
-                    #endregion                    
+                    #endregion                  
                 }
                 LogEvent("Service Start completed");
             }
@@ -268,23 +247,6 @@ namespace MicrotingService
         #region _caseRetrived
         private void _caseRetrived(object sender, EventArgs args)
         {
-
-			//Console.ForegroundColor = ConsoleColor.Yellow;
-			//Console.WriteLine($"_caseRetrived called ");
-			//Case_Dto trigger = (Case_Dto)sender;
-   //         int siteId = trigger.SiteUId;
-   //         string caseType = trigger.CaseType;
-   //         string caseUid = trigger.CaseUId;
-   //         string mUId = trigger.MicrotingUId;
-   //         string checkUId = trigger.CheckUId;
-   //         string CaseId = trigger.CaseId.ToString();
-   //         LogEvent("_caseRetrived siteId is :'" + siteId + "'");
-   //         LogEvent("_caseRetrived caseType is :'" + caseType + "'");
-   //         LogEvent("_caseRetrived caseUid is :'" + caseUid + "'");
-   //         LogEvent("_caseRetrived mUId is :'" + mUId + "'");
-   //         LogEvent("_caseRetrived checkUId is :'" + checkUId + "'");
-   //         LogEvent("_caseRetrived CaseId is :'" + CaseId + "'");
-
             try
             {
 
