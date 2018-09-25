@@ -141,8 +141,8 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Outlook.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Outlook.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microting.eForm, Version=3.0.27.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.eForm.3.0.27\lib\net45\Microting.eForm.dll</HintPath>
+    <Reference Include="Microting.eForm, Version=3.0.30.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microting.eForm.3.0.30\lib\net45\Microting.eForm.dll</HintPath>
     </Reference>
     <Reference Include="Microting.WindowsService.BasePn, Version=1.1.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microting.WindowsService.BasePn.1.1.9\lib\net45\Microting.WindowsService.BasePn.dll</HintPath>
