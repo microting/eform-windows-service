@@ -89,16 +89,21 @@ namespace MicrotingService
                     var catalog = new AggregateCatalog();
 
                     //Adds all the parts found in the same assembly as the Program class
+                    LogEvent("Start loading plugins...");
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         foreach (string dir in Directory.GetDirectories(GetServiceLocation() + @"Plugins"))
                         {
+                            LogEvent("Loading Plugin : " + dir);
                             Console.WriteLine("Loading Plugin : " + dir);
                             catalog.Catalogs.Add(new DirectoryCatalog(dir));
 
                         }
-                    } catch (Exception e) { }
+                    } catch (Exception e) {
+                        LogException("Something went wrong in loading plugins.");
+                        LogException(e.Message);
+                    }
                     //Create the CompositionContainer with the parts in the catalog
                     _container = new CompositionContainer(catalog);
 
@@ -138,14 +143,17 @@ namespace MicrotingService
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Trying to start plugin : " + i.Value.GetType().ToString());
+                    LogEvent("Trying to start plugin : " + i.Value.GetType().ToString());
                     i.Value.Start(sdkSqlCoreStr, GetServiceLocation());
                     Console.WriteLine(i.Value.GetType().ToString() + " started successfully!");
+                    LogEvent(i.Value.GetType().ToString() + " started successfully!");
                 }
             }
             catch (Exception e)
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Start got exception : " + e.Message);
+                LogException("Start got exception : " + e.Message);
             }
             #endregion
 
