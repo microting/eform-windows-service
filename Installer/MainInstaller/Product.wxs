@@ -100,7 +100,6 @@
       <Component Id="AWSSDK.SQS.dll" Guid="*">
         <File Id="AWSSDK.SQS.dll" Name="AWSSDK.SQS.dll" Source="$(var.MicrotingService_TargetDir)AWSSDK.SQS.dll" />
       </Component>
-
       <Component Id="EntityFramework.dll" Guid="*">
         <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.MicrotingService_TargetDir)EntityFramework.dll" />
       </Component>
@@ -130,6 +129,9 @@
       </Component>
       <Component Id="Rebus.SqlServer.dll" Guid="*">
         <File Id="Rebus.SqlServer.dll" Name="Rebus.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)Rebus.SqlServer.dll" />
+      </Component>
+      <Component Id="EPPlus.dll" Guid="*">
+        <File Id="EPPlus.dll" Name="EPPlus.dll" Source="$(var.MicrotingService_TargetDir)EPPlus.dll" />
       </Component>
       <Component Id="Microting.WindowsService.BasePn.dll" Guid="*">
         <File Id="Microting.WindowsService.BasePn.dll" Name="Microting.WindowsService.BasePn.dll" Source="$(var.MicrotingService_TargetDir)Microting.WindowsService.BasePn.dll" />
