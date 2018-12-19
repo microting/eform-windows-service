@@ -9,7 +9,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Deployment.WindowsInstaller;
 using Microsoft.Win32;
-using MicrotingCustomActions.Helpers;
 
 namespace MicrotingCustomActions
 {
@@ -40,20 +39,7 @@ namespace MicrotingCustomActions
 
                     // save connection strings
                     File.WriteAllText(inputFolder + "\\sql_connection_sdkCore.txt",
-                        session.CustomActionData["CS"].Replace("@@", ";"));
-                    if (session.CustomActionData["OUTLOOKCSENABLED"] == "1")
-                    {
-                        var certsFolder = Path.Combine(installFolder, "cert");
-                        Directory.CreateDirectory(certsFolder);
-
-                        File.WriteAllText(inputFolder + "\\sql_connection_outlook.txt",
-                            session.CustomActionData["OUTLOOKCS"].Replace("@@", ";"));
-     
-                        CertHelper.GenerateSelfSignedCert(serviceName, "key.cer", "cert.pfx", certsFolder);
-                        File.WriteAllText(certsFolder + "\\application_id.txt", session.CustomActionData["APPID"]);
-                        File.WriteAllText(certsFolder + "\\directory_id.txt", session.CustomActionData["DIRID"]);
-                    }
-                        
+                        session.CustomActionData["CS"].Replace("@@", ";"));                        
                 }
 
                 // save products list into registry
