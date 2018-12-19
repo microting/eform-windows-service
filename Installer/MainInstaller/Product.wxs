@@ -109,9 +109,6 @@
       <Component Id="MySql.Data.dll" Guid="*">
         <File Id="MySql.Data.dll" Name="MySql.Data.dll" Source="$(var.MicrotingService_TargetDir)MySql.Data.dll" />
       </Component>
-      <Component Id="MySql.Data.Entity.EF6.dll" Guid="*">
-        <File Id="MySql.Data.Entity.EF6.dll" Name="MySql.Data.Entity.EF6.dll" Source="$(var.MicrotingService_TargetDir)MySql.Data.Entity.EF6.dll" />
-      </Component>
       <Component Id="Newtonsoft.Json.dll" Guid="*">
         <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.MicrotingService_TargetDir)Newtonsoft.Json.dll" />
       </Component>
