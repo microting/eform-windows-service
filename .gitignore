@@ -327,3 +327,4 @@ MicrotingService/content/JasperExporter.jar
 Installer/InstallerRunner/Resources/MicrotingServiceInstaller.msi
 Installer/Installer/BuildedCustomActions/
 *.wixpdb
+.vs
