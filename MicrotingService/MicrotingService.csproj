@@ -142,7 +142,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microting.eForm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microting.eForm.3.0.128\lib\netstandard2.0\Microting.eForm.dll</HintPath>
+      <HintPath>..\packages\Microting.eForm.3.0.144\lib\netstandard2.0\Microting.eForm.dll</HintPath>
     </Reference>
     <Reference Include="Microting.WindowsService.BasePn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microting.WindowsService.BasePn.1.1.13\lib\netstandard2.0\Microting.WindowsService.BasePn.dll</HintPath>
