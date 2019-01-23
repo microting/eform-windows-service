@@ -103,9 +103,6 @@
       <Component Id="EntityFramework.SqlServer.dll" Guid="*">
         <File Id="EntityFramework.SqlServer.dll" Name="EntityFramework.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)EntityFramework.SqlServer.dll" />
       </Component>
-      <Component Id="EPPlus.dll" Guid="*">
-        <File Id="EPPlus.dll" Name="EPPlus.dll" Source="$(var.MicrotingService_TargetDir)EPPlus.dll" />
-      </Component>
       <Component Id="Google.Protobuf.dll" Guid="*">
         <File Id="Google.Protobuf.dll" Name="Google.Protobuf.dll" Source="$(var.MicrotingService_TargetDir)Google.Protobuf.dll" />
       </Component>
@@ -562,9 +559,6 @@
       <Component Id="Rebus.SqlServer.dll" Guid="*">
         <File Id="Rebus.SqlServer.dll" Name="Rebus.SqlServer.dll" Source="$(var.MicrotingService_TargetDir)Rebus.SqlServer.dll" />
       </Component>
-      <Component Id="EPPlus.dll" Guid="*">
-        <File Id="EPPlus.dll" Name="EPPlus.dll" Source="$(var.MicrotingService_TargetDir)EPPlus.dll" />
-      </Component>
       <Component Id="Microting.WindowsService.BasePn.dll" Guid="*">
         <File Id="Microting.WindowsService.BasePn.dll" Name="Microting.WindowsService.BasePn.dll" Source="$(var.MicrotingService_TargetDir)Microting.WindowsService.BasePn.dll" />
       </Component>-->
@@ -575,7 +569,6 @@
       Castle.Windsor.dll
       EntityFramework.dll
       EntityFramework.SqlServer.dll
-      EPPlus.dll
       Google.Protobuf.dll
       Microsoft.EntityFrameworkCore.Abstractions.dll
       Microsoft.EntityFrameworkCore.Design.dll
