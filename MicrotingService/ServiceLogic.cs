@@ -101,8 +101,16 @@ namespace MicrotingService
                         foreach (string dir in Directory.GetDirectories(path))
                         {
                             LogEvent("Loading Plugin : " + dir);
-                            Console.WriteLine("Loading Plugin : " + dir);
-                            catalog.Catalogs.Add(new DirectoryCatalog(dir));
+                            if (Directory.Exists(Path.Combine(dir, "netstandard2.0")))
+                            {
+                                Console.WriteLine("Loading Plugin : " + Path.Combine(dir, "netstandard2.0"));
+                                catalog.Catalogs.Add(new DirectoryCatalog(Path.Combine(dir, "netstandard2.0")));
+                            } else
+                            {
+                                Console.WriteLine("Loading Plugin : " + dir);
+                                catalog.Catalogs.Add(new DirectoryCatalog(dir));
+                            }
+                            
 
                         }
                     } catch (Exception e) {
