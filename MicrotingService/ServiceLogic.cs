@@ -32,6 +32,7 @@ using System.Security;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Microting.WindowsService.BasePn;
 
 namespace MicrotingService
@@ -90,10 +91,14 @@ namespace MicrotingService
 
                     //Adds all the parts found in the same assembly as the Program class
                     LogEvent("Start loading plugins...");
+                    Console.WriteLine("Start loading plugins...");
                     try
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        foreach (string dir in Directory.GetDirectories(GetServiceLocation() + @"Plugins"))
+                        string path = Path.Combine(GetServiceLocation(), @"Plugins");
+                        Directory.CreateDirectory(path);
+                        Console.WriteLine("Path for plugins is : " + path);
+                        foreach (string dir in Directory.GetDirectories(path))
                         {
                             LogEvent("Loading Plugin : " + dir);
                             Console.WriteLine("Loading Plugin : " + dir);
@@ -101,6 +106,8 @@ namespace MicrotingService
 
                         }
                     } catch (Exception e) {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Something went wrong in loading plugins: " + e.Message);
                         LogException("Something went wrong in loading plugins.");
                         LogException(e.Message);
                     }
@@ -246,7 +253,15 @@ namespace MicrotingService
                 return serviceLocation;
 
             serviceLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            serviceLocation = Path.GetDirectoryName(serviceLocation) + "\\";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                serviceLocation = Path.GetDirectoryName(serviceLocation) + "/";
+            }
+            else
+            {
+                serviceLocation = Path.GetDirectoryName(serviceLocation) + "\\";
+            }
+            
             LogEvent("serviceLocation:'" + serviceLocation + "'");
 
             return serviceLocation;
