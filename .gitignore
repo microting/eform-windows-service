@@ -328,3 +328,4 @@ Installer/InstallerRunner/Resources/MicrotingServiceInstaller.msi
 Installer/Installer/BuildedCustomActions/
 *.wixpdb
 .vs
+MicrotingService/obj/Debug/MicrotingService\.csprojAssemblyReference\.cache
